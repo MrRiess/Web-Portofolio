@@ -177,7 +177,7 @@ const sendEmail = (e) => {
         .then(
             () => {
                 // Kirim data ke Google Sheets (backend atau Google Apps Script)
-                fetch('https://script.google.com/macros/s/AKfycbxZ57V7xdZanL9hMWVtwvbEIp5uplJ1q6U9lECvOBw4cEZH7E_u5aI8ckrVapidQafjWA/exec', {
+                fetch('https://script.google.com/macros/s/AKfycbyQVAUZLnQsWchrZYQJvA0jL4n-0r8Ri5FRx44Y80EJ2vU9Jq20uTUvtB2tf_bPL-ov3Q/exec', {
                     method: 'POST',
                     body: JSON.stringify(formData),
                     headers: {
