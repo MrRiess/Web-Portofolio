@@ -186,7 +186,6 @@ const sendEmail = (e) => {
                 })
                 .then(response => response.text())
                 .then(() => {
-                    // Tampilkan pesan sukses
                     message.classList.add('color-first');
                     message.textContent = 'Message sent successfully.';
 
@@ -196,6 +195,7 @@ const sendEmail = (e) => {
                 })
                 .catch(error => {
                     console.error('Error saving to spreadsheet:', error);
+                    alert('Failed to save data to spreadsheet. Please try again.');
                 });
             },
             (error) => {
@@ -213,24 +213,6 @@ const sendEmail = (e) => {
 
 // Event listener untuk form
 contactForm.addEventListener('submit', sendEmail);
-
-/* Save Form Data to Spreadsheet */
-function doPost(e) {
-    var sheet = SpreadsheetApp.openById("1MrIXSPKqIOzYMofVfQX--gYJmRu1PTwxP5C8gtbVy8E").getActiveSheet();
-    var data = JSON.parse(e.postData.contents); // Parsing data dari request POST
-    
-    sheet.appendRow([
-        data.name,  // Ganti dengan key sesuai dengan frontend
-        data.email,
-        data.subject,
-        data.message
-    ]);
-
-    return ContentService.createTextOutput(
-        JSON.stringify({ status: "success", message: "Data berhasil disimpan!" })
-    ).setMimeType(ContentService.MimeType.JSON);
-}
-
 
 /*=============== STYLE SWITCHER ===============*/
 const styleSwitcher = document.getElementById('style-switcher'),
