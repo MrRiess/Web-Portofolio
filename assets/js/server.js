@@ -21,7 +21,7 @@ app.use(cors(corsOptions));
 const pool = new Pool({
     user: 'postgres.rgwphyerwjlignahtzys', // Username dari Supabase
     host: 'aws-0-ap-southeast-1.pooler.supabase.com', // Host dari Supabase
-    database: 'portofolio-database', // Database name
+    database: 'postgres', // Database name
     password: 'AgrXWygYruMm1XAf', // Password dari Supabase
     port: 5432, // Port dari Supabase
     ssl: {
