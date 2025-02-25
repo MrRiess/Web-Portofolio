@@ -187,7 +187,7 @@ const sendFormData = async (e) => {
     };
 
     try {
-        const response = await fetch('http://localhost:8000/submit-form', {
+        const response = await fetch('https://vercel.com/faridz-salman-al-parissys-projects/web-portofolio', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

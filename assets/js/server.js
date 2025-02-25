@@ -1,8 +1,7 @@
 const express = require('express');
-const mysql = require('mysql2');
+const { Pool } = require('pg'); // Menggunakan library pg untuk PostgreSQL
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const portfinder = require('portfinder');
 
 const app = express();
 
@@ -11,49 +10,42 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-// Buat koneksi ke database MySQL
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'portofolio_website',
-});
-
-db.connect((err) => {
-    if (err) {
-        console.error('Error connecting to MySQL:', err);
-        return;
+// Buat koneksi ke database Supabase (PostgreSQL)
+const pool = new Pool({
+    user: 'postgres.jsiycglsxksfewzkpmkt', // Username dari Supabase
+    host: 'aws-0-ap-southeast-1.pooler.supabase.com', // Host dari Supabase
+    database: 'postgres', // Database name
+    password: 'Gedepanjang123!', // Password dari Supabase
+    port: 5432, // Port dari Supabase
+    ssl: {
+        rejectUnauthorized: false // Supabase menggunakan SSL
     }
-    console.log('Connected to MySQL database');
 });
 
 // Endpoint untuk menyimpan data form
-app.post('/submit-form', (req, res) => {
+app.post('/submit-form', async (req, res) => {
     const { name, email, subject, message } = req.body;
 
     if (!name || !email || !subject || !message) {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    const sql = 'INSERT INTO contacts (name, email, subject, message) VALUES (?, ?, ?, ?)';
-    db.query(sql, [name, email, subject, message], (err, result) => {
-        if (err) {
-            console.error('Error saving data to MySQL:', err);
-            return res.status(500).json({ error: 'Failed to save data' });
-        }
-        console.log('Data saved to MySQL:', result);
+    try {
+        // Simpan data ke database Supabase
+        const result = await pool.query(
+            'INSERT INTO contacts (name, email, subject, message) VALUES ($1, $2, $3, $4) RETURNING *',
+            [name, email, subject, message]
+        );
+        console.log('Data saved to Supabase:', result.rows[0]);
         res.status(200).json({ message: 'Data saved successfully' });
-    });
+    } catch (err) {
+        console.error('Error saving data to Supabase:', err);
+        res.status(500).json({ error: 'Failed to save data' });
+    }
 });
 
-// Cari port yang tersedia dan jalankan server
-portfinder.getPort((err, port) => {
-    if (err) {
-        console.error('Error finding port:', err);
-        return;
-    }
-
-    app.listen(port, () => {
-        console.log(`Server running on http://localhost:${port}`);
-    });
+// Jalankan server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
