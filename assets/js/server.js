@@ -8,7 +8,14 @@ const app = express();
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+
+// Konfigurasi CORS
+const corsOptions = {
+    origin: 'https://mrriess.github.io', // Izinkan permintaan dari GitHub Pages
+    methods: 'GET,POST', // Izinkan metode GET dan POST
+    optionsSuccessStatus: 200 // Status untuk preflight request
+};
+app.use(cors(corsOptions));
 
 // Buat koneksi ke database Supabase (PostgreSQL)
 const pool = new Pool({
@@ -33,7 +40,7 @@ app.post('/submit-form', async (req, res) => {
     try {
         // Simpan data ke database Supabase
         const result = await pool.query(
-            'INSERT INTO portofolio-backend (name, email, subject, message) VALUES ($1, $2, $3, $4) RETURNING *',
+            'INSERT INTO contacts (name, email, subject, message, created_at) VALUES ($1, $2, $3, $4, NOW()) RETURNING *',
             [name, email, subject, message]
         );
         console.log('Data saved to Supabase:', result.rows[0]);
