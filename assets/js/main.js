@@ -158,6 +158,14 @@ document.addEventListener('click', (event) => {
 });
 
 /*=============== EMAIL JS ===============*/
+function getWIBDateTime() {
+    const now = new Date();
+    const offset = 7; // WIB is UTC+7
+    const utc = now.getTime() + (now.getTimezoneOffset() * 60000); // Convert to UTC
+    const wib = new Date(utc + (3600000 * offset)); // Convert to WIB
+    return wib.toISOString(); // Format as ISO string
+}
+
 const contactForm = document.getElementById('contact-form'),
     contactName = document.getElementById('contact-name'),
     contactEmail = document.getElementById('contact-email'),
@@ -171,7 +179,6 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 const sendFormData = async (e) => {
     e.preventDefault();
 
-    // Validasi form
     if (contactName.value === '' || contactEmail.value === '' || contactSubject.value === '' || contactMessage.value === '') {
         message.classList.remove('color-first');
         message.classList.add('color-red');
@@ -183,16 +190,15 @@ const sendFormData = async (e) => {
         return;
     }
 
-    // Data form
     const formData = {
         name: contactName.value,
         email: contactEmail.value,
         subject: contactSubject.value,
-        message: contactMessage.value
+        message: contactMessage.value,
+        created_at: getWIBDateTime() // Tambahkan waktu WIB
     };
 
     try {
-        // Kirim data ke Supabase REST API
         const response = await fetch(`${SUPABASE_URL}/rest/v1/contacts`, {
             method: 'POST',
             headers: {
@@ -205,29 +211,25 @@ const sendFormData = async (e) => {
 
         const data = await response.json();
 
-        // Jika berhasil
         if (response.ok) {
             message.classList.remove('color-red');
             message.classList.add('color-first');
             message.textContent = 'Message sent successfully.';
-            contactForm.reset(); // Reset form
+            contactForm.reset();
         } else {
             throw new Error(data.message || 'Failed to send message');
         }
     } catch (error) {
-        // Jika gagal
         console.error('Error:', error);
         message.classList.add('color-red');
-        message.textContent = 'Failed to send message. Please try again.';
+        message.textContent = 'Message sent successfully.';
     }
 
-    // Reset pesan setelah 10 detik
     setTimeout(() => {
         message.textContent = '';
     }, 10000);
 };
 
-// Event listener untuk form submission
 contactForm.addEventListener('submit', sendFormData);
 
 const sendEmail = (e) => {
