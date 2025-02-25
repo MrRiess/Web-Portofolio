@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Konfigurasi CORS
 const corsOptions = {
-    origin: 'https://mrriess.github.io', // Izinkan permintaan dari GitHub Pages
+    origin: ['https://mrriess.github.io', 'https://mrriess.github.io/Web-Portofolio'], // Izinkan permintaan dari GitHub Pages
     methods: 'GET,POST', // Izinkan metode GET dan POST
     optionsSuccessStatus: 200 // Status untuk preflight request
 };
