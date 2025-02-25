@@ -19,11 +19,7 @@ app.use(cors(corsOptions));
 
 // Buat koneksi ke database Supabase (PostgreSQL)
 const pool = new Pool({
-    user: 'postgres.jsiycglsxksfewzkpmkt', // Username dari Supabase
-    host: 'aws-0-ap-southeast-1.pooler.supabase.com', // Host dari Supabase
-    database: 'postgres', // Database name
-    password: 'Gedepanjang123!', // Password dari Supabase
-    port: 5432, // Port dari Supabase
+    connectionString: process.env.DATABASE_URL, // Gunakan environment variable
     ssl: {
         rejectUnauthorized: false // Supabase menggunakan SSL
     }
@@ -33,6 +29,7 @@ const pool = new Pool({
 app.post('/submit-form', async (req, res) => {
     const { name, email, subject, message } = req.body;
 
+    // Validasi data
     if (!name || !email || !subject || !message) {
         return res.status(400).json({ error: 'All fields are required' });
     }

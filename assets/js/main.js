@@ -168,6 +168,7 @@ const contactForm = document.getElementById('contact-form'),
 const sendFormData = async (e) => {
     e.preventDefault();
 
+    // Validasi form
     if (contactName.value === '' || contactEmail.value === '' || contactSubject.value === '' || contactMessage.value === '') {
         message.classList.remove('color-first');
         message.classList.add('color-red');
@@ -179,6 +180,7 @@ const sendFormData = async (e) => {
         return;
     }
 
+    // Data form
     const formData = {
         name: contactName.value,
         email: contactEmail.value,
@@ -187,6 +189,7 @@ const sendFormData = async (e) => {
     };
 
     try {
+        // Kirim data ke backend
         const response = await fetch('https://web-portofolio-faridz-salman-al-parissys-projects.vercel.app/submit-form', {
             method: 'POST',
             headers: {
@@ -197,25 +200,29 @@ const sendFormData = async (e) => {
 
         const data = await response.json();
 
+        // Jika berhasil
         if (response.ok) {
             message.classList.remove('color-red');
             message.classList.add('color-first');
             message.textContent = 'Message sent successfully.';
-            contactForm.reset();
+            contactForm.reset(); // Reset form
         } else {
             throw new Error(data.error || 'Failed to send message');
         }
     } catch (error) {
+        // Jika gagal
         console.error('Error:', error);
         message.classList.add('color-red');
         message.textContent = 'Failed to send message. Please try again.';
     }
 
+    // Reset pesan setelah 10 detik
     setTimeout(() => {
         message.textContent = '';
     }, 10000);
 };
 
+// Event listener untuk form submission
 contactForm.addEventListener('submit', sendFormData);
 
 const sendEmail = (e) => {
