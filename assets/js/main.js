@@ -8,11 +8,61 @@ navToggle.addEventListener('click', () => {
     navToggle.classList.toggle('animate-toggle');
 });
 
+/*=============== HEADER FADEOUT ===============*/
+const bgHeader = document.querySelector(".bg-header");
+function startFadeOut() {
+    bgHeader.classList.add("fade-out");
+}
+
+setTimeout(startFadeOut, 2000);
+
 /*=============== REMOVE MENU MOBILE ===============*/
+const navLink = document.querySelectorAll('.nav-link');
+
+const linkAction = () => {
+    const navMenu = document.getElementById('nav-menu');
+
+    navToggle.classList.remove('animate-toggle');
+    navMenu.classList.remove('show-menu');
+};
+
+navLink.forEach((n) => n.addEventListener('click', linkAction));
 
 /*=============== CHANGE BACKGROUND HEADER ===============*/
+const scrollHeader = () => {
+    const header = document.getElementById('header');
+
+    this.scrollY >= 20
+        ? header.classList.add('bg-header')
+        : header.classList.remove('bg-header');
+};
+
+window.addEventListener('scroll', scrollHeader);
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+const sections = document.querySelectorAll('section[id]');
+
+const scrollActive = () => {
+    const scrollY = window.pageYOffset;
+
+    sections.forEach((current) => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 50;
+        const sectionId = current.getAttribute('id');
+        const sectionClass = document.querySelector(`.nav-menu a[href*="${sectionId}"]`);
+
+        if (sectionClass) {
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                sectionClass.classList.add('active-link');
+            } else {
+                sectionClass.classList.remove('active-link');
+            }
+        }
+    });
+};
+
+// Tambahkan event listener untuk scroll
+window.addEventListener('scroll', scrollActive);
 
 /*=============== SERVICES SWIPER ===============*/
 var servicesSwiper = new Swiper('.services-swiper', {
@@ -100,16 +150,17 @@ document.addEventListener('click', (event) => {
 });
 
 /*=============== EMAIL JS ===============*/
-const contactForm = document.getElementById('contact-form'),
-contactName = document.getElementById('contact-name'),
-contactEmail = document.getElementById('contact-email'),
-contactSubject = document.getElementById('contact-subject'),
-contactMessage = document.getElementById('contact-message'),
-message = document.getElementById('message');
+// const contactForm = document.getElementById('contact-form'),
+// contactName = document.getElementById('contact-name'),
+// contactEmail = document.getElementById('contact-email'),
+// contactSubject = document.getElementById('contact-subject'),
+// contactMessage = document.getElementById('contact-message'),
+// message = document.getElementById('message');
 
 // const sendEmail = (e) => {
 //     e.preventDefault();
 
+//     // Validasi form
 //     if (contactName.value === '' || contactEmail.value === '' || contactSubject.value === '' || contactMessage.value === '') {
 //         message.classList.remove('color-first');
 //         message.classList.add('color-red');
@@ -119,24 +170,51 @@ message = document.getElementById('message');
 //             message.textContent = '';
 //         }, 3000);
 //     } else {
+//         // Data form
+//         const formData = {
+//             name: contactName.value,
+//             email: contactEmail.value,
+//             subject: contactSubject.value,
+//             message: contactMessage.value
+//         };
+
+//         // Kirim data ke EmailJS
 //         emailjs.sendForm(
-//             "service_rmblcto",
-//             "template_7qfnujf",
-//             "#contact-form",
-//             'E58mVnk7AvZaPera9')
+//             "service_rmblcto", // Service ID EmailJS
+//             "template_7qfnujf", // Template ID EmailJS
+//             "#contact-form", // Form ID
+//             'E58mVnk7AvZaPera9' // Public Key EmailJS
+//         )
 //         .then(
 //             () => {
-//                 message.classList.add('color-first');
-//                 message.textContent = 'Message sent successfully.';
+//                 // Kirim data ke Google Sheets (backend atau Google Apps Script)
+//                 fetch('https://script.google.com/macros/s/AKfycbyQVAUZLnQsWchrZYQJvA0jL4n-0r8Ri5FRx44Y80EJ2vU9Jq20uTUvtB2tf_bPL-ov3Q/exec', {
+//                     method: 'POST',
+//                     body: JSON.stringify(formData),
+//                     headers: {
+//                         'Content-Type': 'application/json'
+//                     }
+//                 })
+//                 .then(response => response.text())
+//                 .then(() => {
+//                     message.classList.add('color-first');
+//                     message.textContent = 'Message sent successfully.';
 
-//                 setTimeout(() => {
-//                     message.textContent = "";
-//                 }, 5000);
+//                     setTimeout(() => {
+//                         message.textContent = "";
+//                     }, 5000);
+//                 })
+//                 .catch(error => {
+//                     console.error('Error saving to spreadsheet:', error);
+//                     alert('Failed to save data to spreadsheet. Please try again.');
+//                 });
 //             },
 //             (error) => {
-//                 alert('OOPs! SOMETHING WENT WRONG...', error)
+//                 alert('OOPs! SOMETHING WENT WRONG WITH EMAILJS...', error);
 //             }
 //         );
+
+//         // Reset form
 //         contactName.value = '';
 //         contactEmail.value = '';
 //         contactSubject.value = '';
@@ -144,12 +222,19 @@ message = document.getElementById('message');
 //     }
 // };
 
+// // Event listener untuk form
 // contactForm.addEventListener('submit', sendEmail);
+
+const contactForm = document.getElementById('contact-form'),
+    contactName = document.getElementById('contact-name'),
+    contactEmail = document.getElementById('contact-email'),
+    contactSubject = document.getElementById('contact-subject'),
+    contactMessage = document.getElementById('contact-message'),
+    message = document.getElementById('message');
 
 const sendEmail = (e) => {
     e.preventDefault();
 
-    // Validasi form
     if (contactName.value === '' || contactEmail.value === '' || contactSubject.value === '' || contactMessage.value === '') {
         message.classList.remove('color-first');
         message.classList.add('color-red');
@@ -157,61 +242,33 @@ const sendEmail = (e) => {
 
         setTimeout(() => {
             message.textContent = '';
-        }, 3000);
-    } else {
-        // Data form
-        const formData = {
-            name: contactName.value,
-            email: contactEmail.value,
-            subject: contactSubject.value,
-            message: contactMessage.value
-        };
-
-        // Kirim data ke EmailJS
-        emailjs.sendForm(
-            "service_rmblcto", // Service ID EmailJS
-            "template_7qfnujf", // Template ID EmailJS
-            "#contact-form", // Form ID
-            'E58mVnk7AvZaPera9' // Public Key EmailJS
-        )
-        .then(
-            () => {
-                // Kirim data ke Google Sheets (backend atau Google Apps Script)
-                fetch('https://script.google.com/macros/s/AKfycbyQVAUZLnQsWchrZYQJvA0jL4n-0r8Ri5FRx44Y80EJ2vU9Jq20uTUvtB2tf_bPL-ov3Q/exec', {
-                    method: 'POST',
-                    body: JSON.stringify(formData),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => response.text())
-                .then(() => {
-                    message.classList.add('color-first');
-                    message.textContent = 'Message sent successfully.';
-
-                    setTimeout(() => {
-                        message.textContent = "";
-                    }, 5000);
-                })
-                .catch(error => {
-                    console.error('Error saving to spreadsheet:', error);
-                    alert('Failed to save data to spreadsheet. Please try again.');
-                });
-            },
-            (error) => {
-                alert('OOPs! SOMETHING WENT WRONG WITH EMAILJS...', error);
-            }
-        );
-
-        // Reset form
-        contactName.value = '';
-        contactEmail.value = '';
-        contactSubject.value = '';
-        contactMessage.value = '';
+        }, 7000);
+        return;
     }
+
+    emailjs.sendForm(
+        "service_rmblcto",
+        "template_7qfnujf",
+        "#contact-form",
+        'E58mVnk7AvZaPera9'
+    )
+    .then(() => {
+        message.classList.remove('color-red');
+        message.classList.add('color-first');
+        message.textContent = 'Message sent successfully.';
+
+        setTimeout(() => {
+            message.textContent = "";
+        }, 10000);
+        contactForm.reset();
+    })
+    .catch(error => {
+        console.error('EmailJS error:', error);
+        message.classList.add('color-red');
+        message.textContent = 'Failed to send message. Please try again.';
+    });
 };
 
-// Event listener untuk form
 contactForm.addEventListener('submit', sendEmail);
 
 /*=============== STYLE SWITCHER ===============*/

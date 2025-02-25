@@ -20,34 +20,34 @@
 </head>
 <body>
     <!--=============== HEADER ===============-->
-    <header class="header">
+    <header class="header" id="header">
         <nav class="nav container">
             <a href="#" class="nav-logo">Projects</a>
 
             <div class="nav-menu" id="nav-menu">
                 <ul class="nav-list">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Home</a>
+                        <a href="#home" class="nav-link active-link">Home</a>
                     </li>
 
                     <!-- <li class="nav-item">
-                        <a href="#" class="nav-link">Services</a>
+                        <a href="#services" class="nav-link">Services</a>
                     </li> -->
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Skills</a>
+                        <a href="#skills" class="nav-link">Skills</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Projects</a>
+                        <a href="#projects" class="nav-link">Projects</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Resume</a>
+                        <a href="#resume" class="nav-link">Resume</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Contact</a>
+                        <a href="#contact" class="nav-link">Contact</a>
                     </li>
                 </ul>
 
@@ -63,6 +63,14 @@
                     <a href="https://www.instagram.com/faridzsalpp/"target="_blank" class="social-link">
                         <i class="ri-instagram-line"></i>
                     </a>
+
+                    <a href="https://wa.me/6281388482752"target="_blank" class="social-link">
+                        <i class="ri-whatsapp-line"></i>
+                    </a>
+                </div>
+
+                <div class="section-deco deco-left header-deco">
+                    <img src="assets/images/shape-1.png" alt="" class="shape">
                 </div>
             </div>
 
@@ -82,7 +90,7 @@
     <main class="main">
 
         <!--=============== HOME ===============-->
-        <section class="home section">
+        <section class="home section" id="home">
             <div class="home-container container">
                 <div class="home-content">
                     <h2 class="home-subtitle">Hello, <span>My Name is</span></h2>
@@ -132,6 +140,10 @@
                     <a href="https://www.instagram.com/faridzsalpp/"target="_blank" class="social-link">
                         <i class="ri-instagram-line"></i>
                     </a>
+
+                    <a href="https://wa.me/6281388482752"target="_blank" class="social-link">
+                        <i class="ri-whatsapp-line"></i>
+                    </a>
                 </div>
 
                 <div class="home-btns">
@@ -142,11 +154,15 @@
                     <a href="#" class="home-link">My Skills</a>
                 </div>
                 </div>
+
+                <div class="section-deco deco-left">
+                    <img src="assets/images/shape-1.png" alt="" class="shape">
+                </div>
             </div>
         </section>
 
         <!--=============== SERVICES ===============-->
-        <section class="services section">
+        <section class="services section" id="services">
             <h2 class="section-title" data-title="My Services">What I Do</h2>
             <div class="container">
                 <div class="swiper services-swiper">
@@ -197,81 +213,90 @@
                         </div>
                     </div>
                 <div class="swiper-pagination"></div>
+                </div>
+
+                <div class="section-deco deco-right">
+                    <img src="assets/images/shape-1.png" alt="" class="shape">
+                </div>
             </div>
-        </div>
         </section>
 
         <!--=============== SKILLS ===============-->
-        <section class="skills section">
+        <section class="skills section" id="skills">
             <h2 class="section-title" data-title="My Talent">Professional Skills</h2>
+            <div class="container">
+                <div class="skills-container container-grid">
+                    <div class="skills-item">
+                        <div class="skills-header">
+                            <h3 class="skills-name">Excel</h3>
+                                <span class="skills-value">93 <b>%</b></span>
+                        </div>
+                            <p class="skills-description">
+                            I possess advanced Microsoft Excel skills, specializing in data management and analysis. My expertise includes complex formulas like XLOOKUP, SUMPRODUCT, FILTER, TEXTJOIN, IFERROR, etc,
+                            along with statistical functions such as RANK, MIN, MAX, and various AGGREGATE functions. I have designed and implemented automated national competition assessment systems, incorporating
+                            data validation, normalized calculations, and comparative results analysis. Furthermore, I am proficient in PivotTables, Conditional Formatting, and spreadsheet optimization to maximize efficiency.
+                            </p>
+                        <div class="skills-bar">
+                            <span class="skills-percentage" style="width: 93%;"></span>
+                        </div>
+                    </div>
 
-            <div class="skills-container container-grid">
-                <div class="skills-item">
-                    <div class="skills-header">
-                        <h3 class="skills-name">Excel</h3>
-                            <span class="skills-value">93 <b>%</b></span>
+                    <div class="skills-item">
+                        <div class="skills-header">
+                            <h3 class="skills-name">SQL for Data Analyst</h3>
+                                <span class="skills-value">87 <b>%</b></span>
+                        </div>
+                            <p class="skills-description">
+                            I am highly proficient in SQL, specializing in data processing and analysis to drive business decisions. My experience encompasses writing complex queries in MySQL and PostgreSQL,
+                            leveraging table joins, filtering, data aggregation, Common Table Expressions (CTEs), and transaction trend analysis. I routinely process transactional data to calculate key metrics
+                            such as net revenue, cost of goods sold (COGS), net profit, popular payment methods, and product category growth trends. Furthermore, I translate data into actionable business insights and
+                            recommendations, empowering teams to understand performance and optimize operational strategies.
+                            </p>
+                        <div class="skills-bar">
+                            <span class="skills-percentage" style="width: 87%;"></span>
+                        </div>
                     </div>
-                        <p class="skills-description">
-                        I possess advanced Microsoft Excel skills, specializing in data management and analysis. My expertise includes complex formulas like XLOOKUP, SUMPRODUCT, FILTER, TEXTJOIN, IFERROR, etc,
-                        along with statistical functions such as RANK, MIN, MAX, and various AGGREGATE functions. I have designed and implemented automated national competition assessment systems, incorporating
-                        data validation, normalized calculations, and comparative results analysis. Furthermore, I am proficient in PivotTables, Conditional Formatting, and spreadsheet optimization to maximize efficiency.
-                        </p>
-                    <div class="skills-bar">
-                        <span class="skills-percentage" style="width: 93%;"></span>
-                    </div>
-                </div>
 
-                <div class="skills-item">
-                    <div class="skills-header">
-                        <h3 class="skills-name">SQL for Data Analyst</h3>
-                            <span class="skills-value">87 <b>%</b></span>
+                    <div class="skills-item">
+                        <div class="skills-header">
+                            <h3 class="skills-name">Python for Data Analyst</h3>
+                                <span class="skills-value">82 <b>%</b></span>
+                        </div>
+                            <p class="skills-description">
+                            I possess advanced Python skills for data analysis, specializing in processing and exploring business datasets. I am proficient in using pandas, NumPy, Seaborn, and Matplotlib for data cleaning,
+                            dataset manipulation, and visualization. As a Data Analyst, I have processed customer transaction data, analyzed shopping patterns, and provided data-driven recommendations to business teams to
+                            improve operational strategy performance and efficiency.
+                            </p>
+                        <div class="skills-bar">
+                            <span class="skills-percentage" style="width: 82%;"></span>
+                        </div>
                     </div>
-                        <p class="skills-description">
-                        I am highly proficient in SQL, specializing in data processing and analysis to drive business decisions. My experience encompasses writing complex queries in MySQL and PostgreSQL,
-                        leveraging table joins, filtering, data aggregation, Common Table Expressions (CTEs), and transaction trend analysis. I routinely process transactional data to calculate key metrics
-                        such as net revenue, cost of goods sold (COGS), net profit, popular payment methods, and product category growth trends. Furthermore, I translate data into actionable business insights and
-                        recommendations, empowering teams to understand performance and optimize operational strategies.
-                        </p>
-                    <div class="skills-bar">
-                        <span class="skills-percentage" style="width: 87%;"></span>
-                    </div>
-                </div>
 
-                <div class="skills-item">
-                    <div class="skills-header">
-                        <h3 class="skills-name">Python for Data Analyst</h3>
-                            <span class="skills-value">82 <b>%</b></span>
+                    <div class="skills-item">
+                        <div class="skills-header">
+                            <h3 class="skills-name">BI Tools (Looker, Tableau)</h3>
+                                <span class="skills-value">95 <b>%</b></span>
+                        </div>
+                            <p class="skills-description">
+                            I have expertise in Tableau and other BI tools for interactive data visualization and analysis. I am able to create informative and integrated dashboards, utilizing parameters, filters, calculated
+                            fields, and visual storytelling techniques to help business teams understand trends and insights effectively. I have developed various analytical dashboards, including annual and monthly net income
+                            analysis with dynamic filters, marketing campaign performance comparison with campaign performance visualization, customer segmentation based on buying patterns to understand customer behavior, and
+                            the use of parameters and drill-down analysis to enhance dashboard interactivity. With these skills, I can help companies monitor business performance, optimize marketing strategies, and make data-driven decisions.
+                            </p>
+                        <div class="skills-bar">
+                            <span class="skills-percentage" style="width: 95%;"></span>
+                        </div>
                     </div>
-                        <p class="skills-description">
-                        I possess advanced Python skills for data analysis, specializing in processing and exploring business datasets. I am proficient in using pandas, NumPy, Seaborn, and Matplotlib for data cleaning,
-                        dataset manipulation, and visualization. As a Data Analyst, I have processed customer transaction data, analyzed shopping patterns, and provided data-driven recommendations to business teams to
-                        improve operational strategy performance and efficiency.
-                        </p>
-                    <div class="skills-bar">
-                        <span class="skills-percentage" style="width: 82%;"></span>
-                    </div>
-                </div>
 
-                <div class="skills-item">
-                    <div class="skills-header">
-                        <h3 class="skills-name">BI Tools (Looker, Tableau)</h3>
-                            <span class="skills-value">95 <b>%</b></span>
-                    </div>
-                        <p class="skills-description">
-                        I have expertise in Tableau and other BI tools for interactive data visualization and analysis. I am able to create informative and integrated dashboards, utilizing parameters, filters, calculated
-                        fields, and visual storytelling techniques to help business teams understand trends and insights effectively. I have developed various analytical dashboards, including annual and monthly net income
-                        analysis with dynamic filters, marketing campaign performance comparison with campaign performance visualization, customer segmentation based on buying patterns to understand customer behavior, and
-                        the use of parameters and drill-down analysis to enhance dashboard interactivity. With these skills, I can help companies monitor business performance, optimize marketing strategies, and make data-driven decisions.
-                        </p>
-                    <div class="skills-bar">
-                        <span class="skills-percentage" style="width: 95%;"></span>
+                    <div class="section-deco deco-left">
+                        <img src="assets/images/shape-1.png" alt="" class="shape">
                     </div>
                 </div>
             </div>
         </section>
 
         <!--=============== PROJECTS ===============-->
-        <section class="projects section">
+        <section class="projects section" id="projects">
             <h2 class="section-title" data-title="My Cases">Portofolio</h2>
 
             <div class="container">
@@ -344,6 +369,10 @@
                     </div>
 
                 </div>
+
+                <div class="section-deco deco-right">
+                    <img src="assets/images/shape-1.png" alt="" class="shape">
+                </div>
             </div>
         </section>
 
@@ -409,7 +438,7 @@
 
 
         <!--=============== RESUME ===============-->
-        <section class="resume section">
+        <section class="resume section" id="resume">
             <h2 class="section-title" data-title="My Story">Resume</h2>
 
             <div class="resume-container container grid">
@@ -534,11 +563,15 @@
 
                     </div>
                 </div>
+
+                <div class="section-deco deco-left">
+                    <img src="assets/images/shape-1.png" alt="" class="shape">
+                </div>
             </div>
         </section>
 
         <!--=============== CONTACT ===============-->
-        <section class="contact section">
+        <section class="contact section" id="contact">
             <h2 class="section-title" data-title="Let's Talk About Ideas">Contact Me</h2>
 
             <div class="contact-container container grid">
@@ -578,11 +611,13 @@
 
                     <div class="contact-card">
                         <span class="contact-icon">
-                            <i class="ri-contacts-book-2-line"></i>
+                            <a href="https://wa.me/6281388482752"target="_blank" class="social-link">
+                            <i class="ri-whatsapp-line"></i>
+                            </a>
                         </span>
 
                         <div>
-                            <h3 class="contact-title">No. Handphone</h3>
+                            <h3 class="contact-title">Whatsapp</h3>
                             <p class="contact-data">+62 813-8848-2752</p>
                         </div>
                     </div>
@@ -638,11 +673,39 @@
 
                     <p class="message" id="message"></p>
                 </form>
+
+                <div class="section-deco deco-left">
+                    <img src="assets/images/shape-1.png" alt="" class="shape">
+                </div>
             </div>
         </section>
     </main>
 
     <!--=============== FOOTER ===============-->
+    <footer class="footer">
+        <div class="footer-container container">
+            <div class="footer-socials social-links">
+                    <a href="https://www.linkedin.com/in/faridzsalman89/"target="_blank" class="social-link">
+                        <i class="ri-linkedin-box-fill"></i>
+                    </a>
+
+                    <a href="https://github.com/MrRiess"target="_blank" class="social-link">
+                        <i class="ri-github-fill"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/faridzsalpp/"target="_blank" class="social-link">
+                        <i class="ri-instagram-line"></i>
+                    </a>
+
+                    <a href="https://wa.me/6281388482752"target="_blank" class="social-link">
+                        <i class="ri-whatsapp-line"></i>
+                    </a>
+            </div>
+
+            <p class="footer-copyright">© 2025 <span>Projects</span>. All Rights Reserved</p>
+            <p class="footer-copyright">Developed by <span>Faridz Salman Al Parissy</span></p>
+        </div>
+    </footer>
 
     <!--=============== STYLE SWITCHER ===============-->
     <div class="style-switcher" id="style-switcher">
