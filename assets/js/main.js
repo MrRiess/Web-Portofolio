@@ -190,7 +190,7 @@ const sendFormData = async (e) => {
 
     try {
         // Kirim data ke backend
-        const response = await fetch('https://web-portofolio-faridz-salman-al-parissys-projects.vercel.app/submit-form', {
+        const response = await fetch('web-portofolio-lake-gamma.vercel.app/submit-form', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

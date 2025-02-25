@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Konfigurasi CORS
 const corsOptions = {
-    origin: ['https://mrriess.github.io', 'https://mrriess.github.io/Web-Portofolio'], // Izinkan permintaan dari GitHub Pages
+    origin: 'https://mrriess.github.io/Web-Portofolio', // Izinkan permintaan dari GitHub Pages
     methods: 'GET,POST', // Izinkan metode GET dan POST
     optionsSuccessStatus: 200 // Status untuk preflight request
 };
@@ -19,7 +19,11 @@ app.use(cors(corsOptions));
 
 // Buat koneksi ke database Supabase (PostgreSQL)
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL, // Gunakan environment variable
+    user: 'postgres.rgwphyerwjlignahtzys', // Username dari Supabase
+    host: 'aws-0-ap-southeast-1.pooler.supabase.com', // Host dari Supabase
+    database: 'portofolio-database', // Database name
+    password: 'AgrXWygYruMm1XAf', // Password dari Supabase
+    port: 5432, // Port dari Supabase
     ssl: {
         rejectUnauthorized: false // Supabase menggunakan SSL
     }
