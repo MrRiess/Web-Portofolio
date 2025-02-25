@@ -165,6 +165,9 @@ const contactForm = document.getElementById('contact-form'),
     contactMessage = document.getElementById('contact-message'),
     message = document.getElementById('message');
 
+const SUPABASE_URL = 'https://rgwphyerwjlignahtzys.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJnd3BoeWVyd2psaWduYWh0enlzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1MTA1NjUsImV4cCI6MjA1NjA4NjU2NX0.wv4dVYU7ZdYhBY-2PfkGiozbbSHYYzTrgJWuz7JMEjw';
+
 const sendFormData = async (e) => {
     e.preventDefault();
 
@@ -189,11 +192,13 @@ const sendFormData = async (e) => {
     };
 
     try {
-        // Kirim data ke backend
-        const response = await fetch('https://web-portofolio-lake-gamma.vercel.app/submit-form', {
+        // Kirim data ke Supabase REST API
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/contacts`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'apikey': SUPABASE_KEY,
+                'Authorization': `Bearer ${SUPABASE_KEY}`
             },
             body: JSON.stringify(formData)
         });
@@ -207,7 +212,7 @@ const sendFormData = async (e) => {
             message.textContent = 'Message sent successfully.';
             contactForm.reset(); // Reset form
         } else {
-            throw new Error(data.error || 'Failed to send message');
+            throw new Error(data.message || 'Failed to send message');
         }
     } catch (error) {
         // Jika gagal
