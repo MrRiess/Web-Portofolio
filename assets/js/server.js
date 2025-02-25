@@ -33,7 +33,7 @@ app.post('/submit-form', async (req, res) => {
     try {
         // Simpan data ke database Supabase
         const result = await pool.query(
-            'INSERT INTO contacts (name, email, subject, message) VALUES ($1, $2, $3, $4) RETURNING *',
+            'INSERT INTO portofolio-backend (name, email, subject, message) VALUES ($1, $2, $3, $4) RETURNING *',
             [name, email, subject, message]
         );
         console.log('Data saved to Supabase:', result.rows[0]);
