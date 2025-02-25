@@ -92,6 +92,15 @@ function closePopup(id) {
     document.getElementById(id).style.display = "none";
 }
 
+document.addEventListener('click', function(event) {
+    const popups = document.querySelectorAll('.popup');
+    popups.forEach(popup => {
+        if (event.target === popup) {
+            closePopup(popup.id);
+        }
+    });
+});
+
 var mixer = mixitup('.projects-container', {
     selectors: {
         target: '.mix',
@@ -108,7 +117,6 @@ function activeProjects() {
     linkProjects.forEach((a) => {
         a.classList.remove('active-projects');
     });
-
     this.classList.add('active-projects')
 };
 
@@ -231,6 +239,59 @@ const contactForm = document.getElementById('contact-form'),
     contactSubject = document.getElementById('contact-subject'),
     contactMessage = document.getElementById('contact-message'),
     message = document.getElementById('message');
+
+const sendFormData = async (e) => {
+    e.preventDefault();
+
+    if (contactName.value === '' || contactEmail.value === '' || contactSubject.value === '' || contactMessage.value === '') {
+        message.classList.remove('color-first');
+        message.classList.add('color-red');
+        message.textContent = 'Please fill in all the fields.';
+
+        setTimeout(() => {
+            message.textContent = '';
+        }, 7000);
+        return;
+    }
+
+    const formData = {
+        name: contactName.value,
+        email: contactEmail.value,
+        subject: contactSubject.value,
+        message: contactMessage.value
+    };
+
+    try {
+        const response = await fetch('http://localhost:8000/submit-form', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            message.classList.remove('color-red');
+            message.classList.add('color-first');
+            message.textContent = 'Message sent successfully.';
+            contactForm.reset();
+        } else {
+            throw new Error(data.error || 'Failed to send message');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        message.classList.add('color-red');
+        message.textContent = 'Failed to send message. Please try again.';
+    }
+
+    setTimeout(() => {
+        message.textContent = '';
+    }, 10000);
+};
+
+contactForm.addEventListener('submit', sendFormData);
 
 const sendEmail = (e) => {
     e.preventDefault();
