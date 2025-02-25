@@ -1175,7 +1175,6 @@ textarea {
 .footer {
     border-top: var(--shadow-color);
     background-color: var(--container-color);
-    padding-block: 2rem;
 }
 
 .footer-container {
@@ -1489,6 +1488,10 @@ textarea {
         width: 100%;
     }
 
+    .home-description {
+        transform: translateY(-10%);
+    }
+
     .skills-container {
         row-gap: 3rem;
     }
@@ -1511,6 +1514,10 @@ textarea {
 
     .home-data {
         transform: scale(0.5);
+    }
+
+    .home-description {
+        transform: translateY(-6%);
     }
 
     .card {
