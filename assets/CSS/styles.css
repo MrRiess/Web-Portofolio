@@ -1490,7 +1490,7 @@ textarea {
     }
 
     .home-description {
-        transform: translateY(-15%);
+        transform: translateY(-10%);
     }
 
     .skills-container {
@@ -1518,7 +1518,7 @@ textarea {
     }
 
     .home-description {
-        transform: translateY(-3%);
+        transform: translateY(-6%);
     }
 
     .card {
