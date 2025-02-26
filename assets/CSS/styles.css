@@ -122,6 +122,28 @@ textarea {
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal:nth-child(2) {
+    transition-delay: 0.25s;
+}
+.reveal:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.reveal:nth-child(4) {
+    transition-delay: 0.35s;
+}
+
 .social-links {
     display: inline-flex;
     column-gap: 1.25rem;

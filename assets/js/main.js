@@ -14,6 +14,44 @@ function startFadeOut() {
     bgHeader.classList.add("fade-out");
 }
 
+/*=============== FADE IN ===============*/
+/* Scroll */
+const reveal = document.querySelectorAll('.reveal');
+
+const revealOnScroll = () => {
+    reveal.forEach((section) => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (sectionTop < windowHeight * 0.75) {
+            section.classList.add('active');
+        } else {
+            section.classList.remove('active');
+        }
+    });
+};
+
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+function scrollReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+
+    reveals.forEach(reveal => {
+        const revealTop = reveal.getBoundingClientRect().top;
+        const revealBottom = reveal.getBoundingClientRect().bottom;
+
+        if (revealTop < window.innerHeight && revealBottom > 0) {
+            reveal.classList.add('active');
+        } else {
+            reveal.classList.remove('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', scrollReveal);
+window.addEventListener('load', scrollReveal);
+
 setTimeout(startFadeOut, 2000);
 
 /*=============== REMOVE MENU MOBILE ===============*/
@@ -222,7 +260,7 @@ const sendFormData = async (e) => {
     } catch (error) {
         console.error('Error:', error);
         message.classList.add('color-red');
-        message.textContent = 'Message sent successfully.';
+        message.textContent = 'Message sent loading. Please Wait';
     }
 
     setTimeout(() => {
