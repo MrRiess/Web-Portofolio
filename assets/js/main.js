@@ -8,11 +8,15 @@ navToggle.addEventListener("click", () => {
   navToggle.classList.toggle("animate-toggle");
 });
 
-/*=============== HEADER FADEOUT ===============*/
-const bgHeader = document.querySelector(".bg-header");
-function startFadeOut() {
-  bgHeader.classList.add("fade-out");
-}
+document.addEventListener('click', (event) => {
+  const isClickInsideMenu = navMenu.contains(event.target);
+  const isClickOnToggle = navToggle.contains(event.target);
+
+  if (!isClickInsideMenu && !isClickOnToggle) {
+    navMenu.classList.remove('show-menu');
+    navToggle.classList.remove('animate-toggle');
+  }
+});
 
 /*=============== FADE IN ===============*/
 /* Scroll */
@@ -66,7 +70,12 @@ const linkAction = () => {
 
 navLink.forEach((n) => n.addEventListener("click", linkAction));
 
-/*=============== CHANGE BACKGROUND HEADER ===============*/
+/*=============== HEADER FADEOUT ===============*/
+const bgHeader = document.querySelector(".bg-header");
+function startFadeOut() {
+  bgHeader.classList.add("fade-out");
+}
+
 const scrollHeader = () => {
   const header = document.getElementById("header");
 
