@@ -134,29 +134,23 @@ var servicesSwiper = new Swiper(".services-swiper", {
 
 /*=============== MIXITUP FILTER PORTFOLIO ===============*/
 function openPopup(id) {
-  document.getElementById(id).style.display = "flex";
+    const popup = document.getElementById(id);
+    popup.style.display = "flex";
 }
 
 function closePopup(id) {
-  document.getElementById(id).style.display = "none";
+    const popup = document.getElementById(id);
+    popup.style.display = "none";
 }
 
+// Close popup when clicking outside
 document.addEventListener("click", function (event) {
-  const popups = document.querySelectorAll(".popup");
-  popups.forEach((popup) => {
-    if (event.target === popup) {
-      closePopup(popup.id);
-    }
-  });
-});
-
-var mixer = mixitup(".projects-container", {
-  selectors: {
-    target: ".mix",
-  },
-  animation: {
-    duration: 300,
-  },
+    const popups = document.querySelectorAll(".popup");
+    popups.forEach((popup) => {
+        if (event.target === popup) {
+            closePopup(popup.id);
+        }
+    });
 });
 
 /* Active Projects */

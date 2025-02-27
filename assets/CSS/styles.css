@@ -144,9 +144,10 @@ textarea {
 }
 
 .logo {
-  width: 3.5em;
+  width:3.5em;
   height: 3.5em;
   object-fit: contain;
+  margin-right: 0.5em;
 }
 
 .reveal {
@@ -331,6 +332,11 @@ textarea {
     var(--container-color) 0%,
     var(--body-color) 100%
   );
+}
+
+.ri-add-line,
+.ri-subtract-line {
+  color: var(--first-color);
 }
 
 /*=============== LAYOUT ===============*/
@@ -969,7 +975,10 @@ textarea {
   width: 100%;
   height: 100%;
   justify-content: center;
-  align-items: center; /* Ubah dari justify ke center */
+  align-items: center;
+  background-color: rgb(0, 0, 0, 0.8);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 .popup-content {
@@ -981,6 +990,7 @@ textarea {
   filter: opacity(0.95);
   text-align: justify;
   position: relative;
+  animation: slideIn 0.3s ease-in-out;
 }
 
 .popup a {
@@ -1000,6 +1010,18 @@ textarea {
   object-fit: cover;
   border-radius: 10px;
   margin-top: 10px;
+}
+
+.attachment-link {
+    color: #007BFF;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.attachment-link:hover {
+    color: #0056b3;
 }
 
 .close-btn {
@@ -1085,9 +1107,10 @@ textarea {
 }
 
 .resume-title {
-  font-size: var(--h3-font-size);
+  font-size: var(--h2-font-size);
   padding-bottom: 2rem;
   text-align: center;
+  font-family: var(--body-font);
 }
 
 .resume-item:not(:first-child) {
@@ -1109,6 +1132,7 @@ textarea {
 
 .resume-header-title {
   font-size: var(--larger-font-size);
+  font-family: var(--body-font);
 }
 
 .resume-icon {
@@ -1614,7 +1638,7 @@ textarea {
   .home-description,
   .home-btns {
     margin-inline: auto;
-    transform: translateY(-10%) !important;
+    transform: translateY(-7%) !important;
   }
 
   .home-socials {
@@ -1683,4 +1707,16 @@ textarea {
     transform: scale(0.8);
     margin-right: 5rem;
   }
+}
+
+/*=============== ANIMATIONS ===============*/
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
