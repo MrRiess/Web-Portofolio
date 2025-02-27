@@ -1633,17 +1633,13 @@ textarea {
     width: 100%;
   }
 
-  .home-description {
-    transform: translateY(-10%);
-  }
-
   .skills-container {
     row-gap: 3rem;
   }
 }
 
 /* For small devices */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 320px) {
   .nav-menu {
     padding-left: 6rem;
   }
@@ -1683,8 +1679,8 @@ textarea {
     padding-inline: 2rem;
   }
 
-  .skills-header,
-  .skills-description {
-    padding-inline: 1.25rem;
+  .contact-container {
+    transform: scale(0.8);
+    margin-right: 5rem;
   }
 }
