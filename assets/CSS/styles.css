@@ -1730,7 +1730,8 @@ textarea {
   .home-description,
   .home-btns {
     margin-inline: auto;
-    transform: translateY(-10%) !important;
+    transform: translateY(-15%) !important;
+    zoom: 0.8;
   }
 
   .home-socials {
@@ -1772,7 +1773,7 @@ textarea {
   .home-description,
   .home-btns {
     margin-inline: auto;
-    transform: translateY(-5%) !important;
+    transform: translateY(-12%) !important;
     zoom: 0.7;
   }
 
@@ -1818,7 +1819,7 @@ textarea {
   }
 
   .projects {
-    zoom: 0.4;
+    zoom: 0.8;
   }
 
   .services {
