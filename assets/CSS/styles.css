@@ -412,18 +412,20 @@ textarea {
 
 .nav-toggle::after {
   bottom: 7px;
+  z-index: 100;
 }
 
 .nav-menu {
   position: fixed;
   top: 0;
-  right: -100%;
+  right: -100%; /* Awalnya disembunyikan di sebelah kanan */
+  width: 100%;
+  max-width: 512px; /* Lebar maksimum menu */
+  height: 100vh;
   background-color: var(--container-color);
-  width: 512px;
-  height: 100%;
   padding: 15rem 0 0 13rem;
-  transition: right 0.75s var(--transition);
-  overflow: hidden;
+  transition: right 0.4s var(--transition);
+  z-index: 1000;
 }
 
 .nav-list {
