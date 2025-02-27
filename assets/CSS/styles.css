@@ -14,7 +14,11 @@
   --shadow-color: hsla(var(--hue), 80%, 10%, 0.2);
   --gradient-start: hsl(var(--hue), 70%, 50%);
   --gradient-end: hsl(calc(var(--hue) + 45), 70%, 50%);
-  --gradient-color : linear-gradient(235deg, var(--gradient-start), var(--gradient-end));
+  --gradient-color: linear-gradient(
+    235deg,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
 
   /*=============== FONT FAMILY ===============*/
   --body-font: 'Jost', sans-serif;
@@ -145,7 +149,7 @@ textarea {
 .bold-color-span span,
 .home-subtitle span,
 .home-title span,
-.home-job span, 
+.home-job span,
 .footer-copyright span,
 .contact-form-label b {
   background: var(--gradient-color) !important;
@@ -1692,6 +1696,10 @@ textarea {
   .home-banner {
     width: 100%;
   }
+
+  .resume {
+    zoom: 0.9;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -1714,7 +1722,7 @@ textarea {
   .home-description,
   .home-btns {
     margin-inline: auto;
-    transform: translateY(-7%) !important;
+    transform: translateY(-10%) !important;
   }
 
   .home-socials {
@@ -1736,22 +1744,33 @@ textarea {
   .skills-container {
     row-gap: 3rem;
   }
+
+  .resume {
+    zoom: 0.8;
+  }
 }
 
 /* For small devices */
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 430px) {
   .nav-menu {
     padding-left: 6rem;
+    zoom: 0.7;
   }
 
   .home-description,
   .home-btns {
     margin-inline: auto;
     transform: translateY(-5%) !important;
+    zoom: 0.7;
+  }
+
+  .home-job {
+    zoom: 0.7;
   }
 
   .home-socials {
     transform: translateY(-40%) !important;
+    zoom: 0.7;
   }
 
   .header-deco {
@@ -1761,27 +1780,48 @@ textarea {
   .home-banner,
   .home-img-wrapper {
     width: 100%;
+    zoom: 0.7;
   }
 
-  .home-data {
-    transform: scale(0.5) !important;
+  .home-profile {
+    justify-self: center;
+  }
+
+  .home-title {
+    justify-self: center;
+    zoom: 0.5;
   }
 
   .home-data-two {
-    left: clamp(-3rem, -5.2rem + 65.8vw, 30.5rem);
+    left: clamp(-3rem, -5.2rem + 88.8vw, 30.5rem);
   }
 
   .home-description {
     transform: translateY(-6%);
+    zoom: 0.6;
   }
 
   .card {
     padding-inline: 2rem;
   }
+  .services {
+    zoom: 0.8;
+  }
 
-  .contact-container {
-    transform: scale(0.8);
-    margin-right: 5rem;
+  .resume {
+    zoom: 0.65;
+  }
+
+  .skills {
+    zoom: 0.65;
+  }
+
+  .section-title {
+    zoom: 0.8;
+  }
+
+  .contact {
+    zoom: 0.7;
   }
 }
 
