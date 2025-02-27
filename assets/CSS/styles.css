@@ -1,5 +1,5 @@
 /*=============== GOOGLE FONTS ===============*/
-@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100..900&family=Montserrat+Alternates:wght@600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@100..900&family=Montserrat+Alternates:wght@600;700;800&&display=swap");
 
 /*=============== VARIABLE CSS ===============*/
 :root {
@@ -121,6 +121,7 @@ textarea {
   background-color: transparent;
 }
 
+
 /*=============== REUSABLE CSS CLASSES ===============*/
 .custom-bullet {
   list-style-type: none;
@@ -140,6 +141,12 @@ textarea {
   left: 0;
   top: -8px;
   line-height: 1.2;
+}
+
+.logo {
+  width: 3.5em;
+  height: 3.5em;
+  object-fit: contain;
 }
 
 .reveal {
@@ -360,15 +367,11 @@ textarea {
   max-width: 1800px;
 }
 
-.nav-logo,
-.nav-link {
-  color: var(--title-color);
-  font-weight: var(--font-bold);
-}
-
 .nav-logo {
   font-family: var(--second-font);
   font-size: var(--h3-font-size);
+  font-weight: var(--font-bold);
+  color: var(--first-color);
 }
 
 .nav-buttons {
@@ -434,6 +437,8 @@ textarea {
 .nav-link {
   font-size: var(--larger-font-size);
   transition: color 0.3s var(--transition);
+  color: var(--title-color);
+  font-weight: var(--font-bold);
 }
 
 .nav-link:hover {
@@ -473,9 +478,11 @@ textarea {
 
 /* Change Background Header */
 .bg-header {
-  background-color: var(--container-color);
-  transition: 0.3s var(--transition);
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
+  transition: 0.4s var(--transition);
   opacity: 1;
+  backdrop-filter: blur(5px);
 }
 
 .bg-header.fade-out {
@@ -505,7 +512,9 @@ textarea {
 .home-subtitle span,
 .home-title span,
 .home-description span,
-.skills-description span {
+.skills-description span,
+.resume-description span,
+.home-job span {
   color: var(--first-color);
   font-weight: var(--font-semi-bold);
 }
@@ -520,9 +529,8 @@ textarea {
 
 .home-job {
   font-size: var(--h3-font-size);
-  font-weight: var(--font-semi-bold);
+  font-weight: var(--font-medium);
   margin-block: 1.5rem 2.5rem;
-  color: var(--first-color);
 }
 
 .home-banner {
@@ -1044,7 +1052,7 @@ textarea {
 
 /*=============== RESUME ===============*/
 .resume-container {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 1.5rem;
 }
 
@@ -1071,6 +1079,9 @@ textarea {
 .resume-header {
   padding-block: 1.5rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .resume-header-title {
@@ -1131,6 +1142,9 @@ textarea {
 
 .resume-description {
   margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: var(--normal-font-size);
+  text-align: justify;
 }
 /*=============== CONTACT ===============*/
 .contact {
