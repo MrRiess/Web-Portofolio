@@ -1605,6 +1605,10 @@ textarea {
     left: clamp(-3rem, -5.2rem + 70.8vw, 30.5rem);
   }
 
+  .home-profile {
+    justify-self: center;
+  }
+
   .swiper-pagination-bullet::before {
     top: 11.5px;
   }
@@ -1664,6 +1668,10 @@ textarea {
 
   .home-data-two {
     left: clamp(-3rem, -5.2rem + 75.8vw, 30.5rem);
+  }
+
+  .home-profile {
+    justify-self: center;
   }
 
   .projects-list {
@@ -1741,6 +1749,10 @@ textarea {
     width: 100%;
   }
 
+  .home-profile {
+    justify-self: center;
+  }
+
   .skills-container {
     row-gap: 3rem;
   }
@@ -1804,6 +1816,11 @@ textarea {
   .card {
     padding-inline: 2rem;
   }
+
+  .projects-card {
+    zoom: 0.4;
+  }
+
   .services {
     zoom: 0.8;
   }
@@ -1818,6 +1835,85 @@ textarea {
 
   .section-title {
     zoom: 0.8;
+  }
+
+  .contact {
+    zoom: 0.7;
+  }
+}
+
+@media screen and (max-width: 250px) {
+  .nav-menu {
+    padding-left: 6rem;
+    zoom: 0.7;
+  }
+
+  .home-description,
+  .home-btns {
+    margin-inline: auto;
+    transform: translateY(-5%) !important;
+    zoom: 0.7;
+  }
+
+  .home-job {
+    zoom: 0.7;
+  }
+
+  .home-socials {
+    transform: translateY(-40%) !important;
+    zoom: 0.7;
+  }
+
+  .header-deco {
+    left: 40px;
+  }
+
+  .home-banner,
+  .home-img-wrapper {
+    width: 100%;
+    zoom: 0.7;
+  }
+
+  .home-profile {
+    justify-self: center;
+  }
+
+  .home-title {
+    justify-self: center;
+    zoom: 0.5;
+  }
+
+  .home-data-two {
+    left: clamp(-3rem, -5.2rem + 88.8vw, 30.5rem);
+  }
+
+  .home-description {
+    transform: translateY(-6%);
+    zoom: 0.6;
+  }
+
+  .card {
+    padding-inline: 2rem;
+  }
+
+  .projects {
+    zoom: 0.6;
+  }
+
+  .services {
+    zoom: 0.8;
+  }
+
+  .resume {
+    zoom: 0.65;
+  }
+
+  .skills {
+    zoom: 0.45;
+  }
+
+  .section-title {
+    zoom: 0.6;
   }
 
   .contact {
