@@ -340,8 +340,8 @@
                     <li class="projects-item" data-filter=".bi-tools">BI Tools</li>
                 </ul>
 
-                <div class="projects-container grid reveal">
-                    <div class="mix excel reveal">
+                <div class="projects-container grid">
+                    <div class="mix excel">
                         <div class="projects-card">
                             <div class="projects-popup" onclick="openPopup('popup-1')">
                                 <img src="assets/images/portofolio-1.png" alt="Project 1" class="projects-img" />
@@ -357,7 +357,7 @@
                         </div>
                     </div>
 
-                    <div class="mix excel reveal">
+                    <div class="mix bi-tools">
                         <div class="projects-card">
                             <div class="projects-popup" onclick="openPopup('popup-2')">
                                 <img src="assets/images/portofolio-1.png" alt="Project 2" class="projects-img" />
@@ -372,7 +372,7 @@
                         </div>
                     </div>
 
-                    <div class="mix python reveal">
+                    <div class="mix python">
                         <div class="projects-card">
                             <div class="projects-popup" onclick="openPopup('popup-3')">
                                 <img src="assets/images/portofolio-1.png" alt="Project 3" class="projects-img" />
@@ -387,7 +387,7 @@
                         </div>
                     </div>
 
-                    <div class="mix bi-tools reveal">
+                    <div class="mix sql">
                         <div class="projects-card">
                             <div class="projects-popup" onclick="openPopup('popup-4')">
                                 <img src="assets/images/portofolio-1.png" alt="Project 4" class="projects-img" />
@@ -430,7 +430,7 @@
                     <span class="close-btn" onclick="closePopup('popup-2')">&times;</span>
                     <h2><a href="">📂 Jury Assessment Form</a></h2>
                     <p><strong>Assessment form for National Competition</strong></p>
-                    <p><a href="#" target="_blank">View Report</a></p>
+                    <p><b href="#" target="_blank">View Report</b></p>
                     <div class="skills">
                         <span class="tag purple">EDA</span>
                         <span class="tag red">Clustering Analysis</span>
@@ -445,7 +445,7 @@
                     <span class="close-btn" onclick="closePopup('popup-3')">&times;</span>
                     <h2><a href="">📂 Superstore E-Commerce</a></h2>
                     <p><strong>Study Case of E-Commerce</strong></p>
-                    <p><a href="#" target="_blank">View Report</a></p>
+                    <p><b href="#" target="_blank">View Report</b></p>
                     <div class="skills">
                         <span class="tag purple">EDA</span>
                         <span class="tag yellow">Linear Regression</span>
@@ -460,7 +460,7 @@
                     <span class="close-btn" onclick="closePopup('popup-4')">&times;</span>
                     <h2>Solving High Attrition Rate</h2>
                     <p><strong>Study Case of XYZ Ltd</strong></p>
-                    <p><a href="#" target="_blank">View Report</a></p>
+                    <p><b href="#" target="_blank">View Report</b></p>
                     <div class="skills">
                         <span class="tag black">Performance Metrics</span>
                     </div>
@@ -680,7 +680,7 @@
                         <div class="resume-item">
                             <div class="resume-header">
                                 <img src="assets/images/Bendera-Jepang.png" alt="Bendera Jepang" class="logo reveal">
-                                <h3 class="resume-header-title reveal">Indonesian Friendship Day and Wai Wai World Fair 2022</h3>
+                                <h3 class="resume-header-title reveal">Indonesian Friendship Day and Wai Wai World Fair</h3>
                                 <span class="resume-icon">
                                     <i class="ri-add-line"></i>
                                 </span>
@@ -693,8 +693,7 @@
                                 </div>
 
                                 <p class="resume-description">I participated in the Indonesia-Japan Friendship Festival (IJFD) and Wai Wai World Fair in Shizuoka, Japan, as an angklung player. <span>This event is an annual event that promotes cultural exchange through various activities such as music, dance, and dialogue</span>. Our team performed West Javanese art for approximately 30 minutes, performing 7 songs, including Mojang Priangan, Medley Sunda, and Anpan Man. The event was attended by <span>Mr. Heri Akhmadi, a representative from the Indonesian Embassy in Japan</span>, and the <span>Mayor of Shizuoka</span>.</p>
-                                
-                                <p class="attachment-link" onclick="openPopup('certificate-popup')">Attachment</p>
+                                <p class="attachment-link" onclick="openPopup('certificate-popup1')">Attachment</p>
                             </div>
                         </div>
 
@@ -704,15 +703,71 @@
                 <div class="section-deco deco-left reveal">
                     <img src="assets/images/shape-1.png" alt="" class="shape reveal">
                 </div>
+
             </div>
         </section>
 
-        <div id="certificate-popup" class="popup">
-            <div class="popup-content">
-                <span class="close-btn" onclick="closePopup('certificate-popup')">&times;</span>
-                <img src="assets/images/Sertifikat-KBRI.jpeg" alt="Sertifikat KBRI" class="popup-image">
+        <!-- Pop-ups -->
+            <div id="certificate-popup1" class="popup">
+                <div class="popup-content">
+                        <img src="assets/images/Sertifikat-KBRI.jpeg" alt="Sertifikat KBRI" class="popup-img">
+                        <h2 class="bold-color">Certificate of Participation</h2>
+                        <p>This certificate is awarded to Faridz Salman Al Parissy for their participation in the Indonesia Friendship Day (IFD) and Wai Wai World Fair 2022 in Shizuoka, Japan.</p>
+                    <div class="details">
+                        <p class="bold-color-span"><span>Date</span>: November 27, 2022</p>
+                        <p class="bold-color-span"><span>Issued by</span>: Kedutaan Besar Republik Indonesia di Jepang</p>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <div id="certificate-popup1" class="popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup('certificate-popup')">&times;</span>
+                    <img src="assets/images/Sertifikat-KBRI.jpeg" alt="Sertifikat KBRI" class="popup-img">
+                </div>
+            </div>
+
+            <div id="certificate-popup1" class="popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup('certificate-popup')">&times;</span>
+                    <img src="assets/images/Sertifikat-KBRI.jpeg" alt="Sertifikat KBRI" class="popup-img">
+                </div>
+            </div>
+
+            <div id="certificate-popup1" class="popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup('certificate-popup')">&times;</span>
+                    <img src="assets/images/Sertifikat-KBRI.jpeg" alt="Sertifikat KBRI" class="popup-img">
+                </div>
+            </div>
+
+            <div id="certificate-popup1" class="popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup('certificate-popup')">&times;</span>
+                    <img src="assets/images/Sertifikat-KBRI.jpeg" alt="Sertifikat KBRI" class="popup-img">
+                </div>
+            </div>
+
+            <div id="certificate-popup1" class="popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup('certificate-popup')">&times;</span>
+                    <img src="assets/images/Sertifikat-KBRI.jpeg" alt="Sertifikat KBRI" class="popup-img">
+                </div>
+            </div>
+
+            <div id="certificate-popup1" class="popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup('certificate-popup')">&times;</span>
+                    <img src="assets/images/Sertifikat-KBRI.jpeg" alt="Sertifikat KBRI" class="popup-img">
+                </div>
+            </div>
+
+            <div id="certificate-popup1" class="popup">
+                <div class="popup-content">
+                    <span class="close-btn" onclick="closePopup('certificate-popup')">&times;</span>
+                    <img src="assets/images/Sertifikat-KBRI.jpeg" alt="Sertifikat KBRI" class="popup-img">
+                </div>
+            </div>
         <!--=============== RESUME END===============-->
 
         <!--=============== CONTACT START ===============-->
@@ -946,10 +1001,11 @@
                 backDelay: 2000
             });
         });
-</script>
+    </script>
 
     <!--=============== JS ===============-->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/server.js"></script>
 </body>
 </html>
+
