@@ -1142,6 +1142,11 @@ textarea {
   margin-top: 10px;
 }
 
+.bold-color-span {
+  text-align: justify;
+  margin-inline: 0.8rem;
+}
+
 .attachment-container {
   text-align: center;
   margin-top: 20px;
