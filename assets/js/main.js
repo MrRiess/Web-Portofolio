@@ -132,22 +132,29 @@ var servicesSwiper = new Swiper('.services-swiper', {
   },
 });
 
-
 /*=============== POP UP ===============*/
 // Inisialisasi Swiper untuk carousel di dalam popup
 var certificateSwiper = null;
-
 function openPopup(popupId) {
   const popup = document.getElementById(popupId);
   const overlay = document.createElement('div');
   overlay.classList.add('overlay');
+  overlay.setAttribute('id', 'popup-overlay'); // Tambahkan ID agar bisa ditemukan saat ditutup
   document.body.appendChild(overlay);
 
   popup.classList.add('active');
   overlay.classList.add('active');
 
-  // Inisialisasi Swiper saat popup dibuka (hanya untuk popup tertentu)
-  if (popupId === 'certificate-popup-waiwai' && !certificateSwiper) {
+  const certificatePopups = new Set([
+    'certificate-popup-waiwai',
+    'certificate-popup-upsi',
+    'certificate-popup-gifu',
+    'certificate-popup-chubu',
+    'certificate-popup-payakumbuh',
+  ]);
+
+  // Inisialisasi Swiper jika popup yang dibuka termasuk dalam daftar
+  if (certificatePopups.has(popupId) && !certificateSwiper) {
     certificateSwiper = new Swiper('.certificate-swiper', {
       spaceBetween: 32,
       loop: true,
@@ -159,48 +166,35 @@ function openPopup(popupId) {
   }
 
   // Tutup popup saat overlay diklik
-  overlay.addEventListener('click', () => {
-    closePopup(popupId);
-  });
+  overlay.addEventListener('click', () => closePopup(popupId));
 
-  // Tutup popup saat tombol Esc atau Backspace ditekan
+  // Tambahkan event listener untuk tombol keyboard
   document.addEventListener('keydown', handleKeyDown);
 }
 
 function closePopup(popupId) {
   const popup = document.getElementById(popupId);
-  const overlay = document.querySelector('.overlay');
+  const overlay = document.getElementById('popup-overlay');
 
-  popup.classList.remove('active');
-  overlay.classList.remove('active');
-
-  // Hancurkan Swiper saat popup ditutup
-  if (certificateSwiper) {
-    certificateSwiper.destroy();
-    certificateSwiper = null;
+  if (popup) popup.classList.remove('active');
+  if (overlay) {
+    overlay.classList.remove('active');
+    setTimeout(() => overlay.remove(), 300); // Hapus overlay setelah animasi selesai
   }
 
-  // Hapus overlay dari DOM setelah animasi selesai
-  setTimeout(() => {
-    if (overlay) {
-      overlay.remove();
-    }
-  }, 300);
-
-  // Hapus event listener untuk tombol keyboard
+  // Hapus event listener untuk menghindari kebocoran memori
   document.removeEventListener('keydown', handleKeyDown);
 }
 
-// Fungsi untuk menangani penekanan tombol
 function handleKeyDown(event) {
-  // Cek jika tombol Esc (key code 27) atau Backspace (key code 8) ditekan
-  if (event.keyCode === 27 || event.keyCode === 8) {
+  if (event.key === 'Escape' || event.key === 'Backspace') {
     const activePopup = document.querySelector('.popup.active');
     if (activePopup) {
       closePopup(activePopup.id);
     }
   }
 }
+
 
 /* Active Projects */
 const linkProjects = document.querySelectorAll('.projects-item');

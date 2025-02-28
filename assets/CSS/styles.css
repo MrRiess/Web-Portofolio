@@ -1821,6 +1821,20 @@ textarea {
 }
 
 @media screen and (max-width: 576px) {
+  .popup-content-resume h2,
+  .popup-content h2 {
+    font-size: 1.25rem; /* Ukuran font lebih kecil */
+  }
+
+  .popup-content-resume p,
+  .popup-content p {
+    font-size: 0.875rem; /* Ukuran font lebih kecil */
+  }
+
+  .swiper-pagination {
+    zoom: 0.7;
+  }
+
   .container {
     padding-inline: 1.25rem;
   }
@@ -1879,7 +1893,21 @@ textarea {
 }
 
 /* For small devices */
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 480px) {
+  .popup-content-resume h2,
+  .popup-content h2 {
+    font-size: 0.9rem; /* Ukuran font lebih kecil */
+  }
+
+  .popup-content-resume p,
+  .popup-content p {
+    font-size: 0.615rem; /* Ukuran font lebih kecil */
+  }
+
+  .swiper-pagination {
+    zoom: 0.7;
+  }
+
   .nav-menu {
     padding-left: 6rem;
     zoom: 0.7;
@@ -1959,6 +1987,20 @@ textarea {
 }
 
 @media screen and (max-width: 325px) {
+  .popup-content-resume h2,
+  .popup-content h2 {
+    font-size: 0.7rem; /* Ukuran font lebih kecil */
+  }
+
+  .popup-content-resume p,
+  .popup-content p {
+    font-size: 0.415rem; /* Ukuran font lebih kecil */
+  }
+
+  .swiper-pagination {
+    zoom: 0.7;
+  }
+
   .nav-menu {
     padding-left: 6rem;
     zoom: 0.7;
