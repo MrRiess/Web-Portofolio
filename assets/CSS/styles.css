@@ -12,12 +12,21 @@
   --border-color: hsl(var(--hue), 4%, 16%);
   --white-color: hsl(0, 0%, 100%);
   --shadow-color: hsla(var(--hue), 80%, 10%, 0.2);
+
+  /*=============== Gradient Color ===============*/
   --gradient-start: hsl(var(--hue), 70%, 50%);
   --gradient-end: hsl(calc(var(--hue) + 45), 70%, 50%);
   --gradient-color: linear-gradient(
     235deg,
     var(--gradient-start),
     var(--gradient-end)
+  );
+  --gradient-text-start: hsl(var(--hue), 60%, 30%);
+  --gradient-text-end: hsl(calc(var(--hue) + 45), 60%, 30%);
+  --gradient-text: linear-gradient(
+    235deg,
+    var(--gradient-text-start),
+    var(--gradient-text-end)
   );
 
   /*=============== FONT FAMILY ===============*/
@@ -130,7 +139,7 @@ textarea {
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
-.bold-color,
+.home-title span,
 .nav-logo,
 .ri-add-line,
 .ri-subtract-line,
@@ -148,20 +157,24 @@ textarea {
 
 .bold-color-span span,
 .home-subtitle span,
-.home-title span,
 .home-job span,
 .footer-copyright span,
-.contact-form-label b {
-  background: var(--gradient-color) !important;
+.home-data-title span,
+.contact-form-label b,
+.custom-bullet::before {
+  background: var(--gradient-text) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   font-weight: var(--font-semi-bold);
 }
 
+.bold-color,
 .home-description span,
 .skills-description span,
 .resume-description span {
-  color: var(--first-color);
+  background: var(--gradient-text) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
   font-weight: var(--font-semi-bold);
 }
 
@@ -174,7 +187,6 @@ textarea {
 
 .custom-bullet::before {
   content: '•';
-  color: var(--first-color);
   font-weight: bold;
   font-size: 2.5em;
   display: inline-block;
@@ -754,7 +766,7 @@ textarea {
 
 .resume-swiper .swiper-pagination {
   position: initial;
-  margin-top: -1.25rem;
+  margin-top: -0.4rem;
 }
 
 /* .swiper-pagination-bullets::before {
@@ -1004,11 +1016,9 @@ textarea {
   width: 90%;
   max-width: 600px;
   padding: 30px;
-  background: var(--gradient-color);
   border-radius: 15px;
   border: 2px solid transparent;
   background-clip: padding-box;
-  box-shadow: 0 10px 30px var(--shadow-color);
   z-index: 1000;
   opacity: 0;
   transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
@@ -1017,10 +1027,11 @@ textarea {
 .popup::before {
   content: '';
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
+  top: 25px;
+  left: 25px;
+  right: 25px;
+  bottom: 25px;
+  box-shadow: 0 30px 90px 100px var(--shadow-color);
   background: var(--gradient-color);
   border-radius: 15px;
   z-index: -1;
@@ -1035,7 +1046,7 @@ textarea {
   object-fit: cover;
   width: 100%;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   justify-items: center;
 }
 
@@ -1070,7 +1081,7 @@ textarea {
 .popup-content-resume {
   text-align: center;
   background-color: white;
-  padding: 25px;
+  padding: 15px;
   border-radius: 10px;
   position: relative;
   animation: slideIn 0.5s ease-in-out;
@@ -1082,6 +1093,7 @@ textarea {
   margin-bottom: 10px;
   margin-top: 10px;
   font-size: 24px;
+  color: var(--title-color);
 }
 
 .popup-content-resume p,
@@ -1318,6 +1330,7 @@ textarea {
 
 .swiper-wrapper {
   align-items: center;
+  font-weight: ;
 }
 /*=============== CONTACT ===============*/
 .contact {
@@ -1537,7 +1550,6 @@ textarea {
 @media screen and (max-width: 1600px) {
   .section-deco:not(.header-deco) {
     display: none;
-    transition: opacity 0.5s ease, transform 0.5s ease;
   }
 
   .home-banner {
@@ -1547,45 +1559,37 @@ textarea {
     transform: translateY(-10%);
     width: max-content;
     margin-inline: auto;
-    transition: transform 0.5s ease;
   }
 
   .home-content {
     text-align: center;
-    transition: opacity 0.5s ease;
   }
 
   .home-description,
   .home-btns {
     margin-inline: auto;
     transform: translateY(-30%) !important;
-    transition: transform 0.5s ease;
   }
 
   .home-socials {
     transform: translateY(-150%) !important;
-    transition: transform 0.5s ease;
   }
 
   .home-banner {
     margin-block: 2.5rem;
-    transition: margin 0.5s ease;
   }
 
   .home-data {
     transform: scale(0.9);
-    transition: transform 0.5s ease;
   }
 
   .home-data-two {
     left: clamp(-3rem, -5.2rem + 70.8vw, 30.5rem);
-    transition: left 0.5s ease;
   }
 
   .home-btns {
     flex-direction: column;
     row-gap: 3.75rem;
-    transition: flex-direction 0.5s ease, row-gap 0.5s ease;
   }
 
   .home-link::before {
@@ -1594,174 +1598,142 @@ textarea {
     transform: translateX(-50%);
     width: 2px;
     height: 40px;
-    transition: all 0.5s ease;
   }
 
   .home-description {
     max-width: 1350px;
-    transition: max-width 0.5s ease;
   }
 
   .services-swiper,
   .testimonial-swiper {
     max-width: 1350px;
-    transition: max-width 0.5s ease;
   }
 
   .swiper-pagination-bullet::before {
     width: 90px;
-    transition: width 0.5s ease;
   }
 
   .skills-container {
     column-gap: 0rem !important;
-    transition: grid-template-columns 0.5s ease;
   }
 
   .projects-container {
     grid-template-columns: repeat(2, fit-content(600px));
     justify-content: center;
-    transition: grid-template-columns 0.5s ease;
   }
 
   .skills-item {
     margin-inline: 2rem !important;
-    transition: margin 0.5s ease;
   }
 
   .resume-header-title {
     font-size: var(--larger-font-size);
-    transition: font-size 0.5s ease;
   }
 
   .resume-container {
     grid-template-columns: fit-content(1200px);
     justify-content: center;
     row-gap: 2.5rem;
-    transition: grid-template-columns 0.5s ease, row-gap 0.5s ease;
   }
 }
 
 @media screen and (max-width: 1325px) {
   .nav {
     height: 4rem;
-    transition: height 0.3s ease;
   }
 
   .section {
     padding-block: 6rem 1rem;
-    transition: padding 0.3s ease;
   }
 
   .home-container {
     padding-block: 2rem;
-    transition: padding 0.3s ease;
   }
 
   .home-title {
     text-shadow: 2px 2px var(--shadow-color);
-    transition: text-shadow 0.3s ease;
   }
 
   .home-data {
     transform: scale(0.8) !important;
-    transition: transform 0.3s ease;
   }
 
   .home-data-two {
     left: clamp(-3rem, -5.2rem + 70.8vw, 30.5rem);
-    transition: left 0.3s ease;
   }
 
   .home-profile {
     justify-self: center;
-    transition: justify-self 0.3s ease;
   }
 
   .swiper-pagination-bullet::before {
     top: 11.5px;
-    transition: top 0.3s ease;
   }
 
   .skills-container {
     justify-content: center;
-    transition: grid-template-columns 0.3s ease;
   }
 
   .resume-container {
     padding-inline: 3rem;
     justify-content: center;
     row-gap: 2.5rem;
-    transition: grid-template-columns 0.3s ease, row-gap 0.3s ease;
   }
 }
 
 @media screen and (max-width: 1024px) {
   .nav {
     height: 4rem;
-    transition: height 0.3s ease;
   }
 
   .section {
     padding-block: 6rem 1rem;
-    transition: padding 0.3s ease;
   }
 
   .home-container {
     padding-block: 2rem;
-    transition: padding 0.3s ease;
   }
 
   .home-title {
     text-shadow: 2px 2px var(--shadow-color);
-    transition: text-shadow 0.3s ease;
   }
 
   .home-data {
     transform: scale(0.8) !important;
-    transition: transform 0.3s ease;
   }
 
   .home-data-two {
     left: clamp(-3rem, -5.2rem + 70.8vw, 30.5rem);
-    transition: left 0.3s ease;
   }
 
   .home-profile {
     justify-self: center;
-    transition: justify-self 0.3s ease;
   }
 
   .swiper-pagination-bullet::before {
     top: 11.5px;
-    transition: top 0.3s ease;
   }
 
   .skills-container {
     grid-template-columns: fit-content(950px);
     justify-content: center;
-    transition: grid-template-columns 0.3s ease;
     margin-right: -1.5rem;
     margin-left: -1.5rem;
-    transition: margin 0.3s ease;
   }
 
   .resume-container {
     grid-template-columns: fit-content(950px);
     justify-content: center;
     row-gap: 2.5rem;
-    transition: grid-template-columns 0.3s ease, row-gap 0.3s ease;
   }
 
   .contact-container,
   .contact-form-group {
     grid-template-columns: 1fr;
-    transition: grid-template-columns 0.3s ease;
   }
 
   .contact-container {
     row-gap: 1.5rem;
-    transition: row-gap 0.3s ease;
   }
 
   .contact-form,
@@ -1769,7 +1741,6 @@ textarea {
     max-width: 850px;
     margin-inline: auto;
     width: 100%;
-    transition: max-width 0.3s ease, width 0.3s ease;
   }
 }
 
@@ -1778,112 +1749,92 @@ textarea {
   .nav-menu,
   .style-switcher {
     width: 100%;
-    transition: width 0.3s ease;
   }
 
   .nav-buttons {
     column-gap: 1.5rem;
-    transition: column-gap 0.3s ease;
   }
 
   .home-description,
   .home-btns {
     margin-inline: auto;
     transform: translateY(-15%) !important;
-    transition: transform 0.3s ease;
   }
 
   .home-socials {
     transform: translateY(-150%) !important;
-    transition: transform 0.3s ease;
   }
 
   .home-data {
     transform: scale(0.7) !important;
-    transition: transform 0.3s ease;
   }
 
   .home-data-two {
     left: clamp(-3rem, -5.2rem + 75.8vw, 30.5rem);
-    transition: left 0.3s ease;
   }
 
   .home-profile {
     justify-self: center;
-    transition: justify-self 0.3s ease;
   }
 
   .projects-list {
     column-gap: 2rem;
-    transition: column-gap 0.3s ease;
   }
 
   .services-swiper,
   .testimonial-swiper {
     max-width: 420px;
-    transition: max-width 0.3s ease;
   }
 
   .swiper-pagination-bullet::before {
     width: 120px;
-    transition: width 0.3s ease;
   }
 
   .skills-container,
   .projects-container {
     justify-content: center;
-    transition: justify-content 0.3s ease;
   }
 
   .skills-container {
     margin-right: -1.5rem;
     margin-left: -1.5rem;
-    transition: margin 0.3s ease;
   }
 
   .projects-container {
     grid-template-columns: fit-content(550px);
-    transition: grid-template-columns 0.3s ease;
   }
 
   .footer-container {
     flex-direction: column;
     row-gap: 1.25rem;
-    transition: flex-direction 0.3s ease, row-gap 0.3s ease;
   }
 
   .home-banner {
     width: 100%;
-    transition: width 0.3s ease;
   }
 
   .resume-container {
     grid-template-columns: fit-content(950px);
     justify-content: center;
     row-gap: 2.5rem;
-    transition: grid-template-columns 0.3s ease, row-gap 0.3s ease;
   }
 }
 
 @media screen and (max-width: 576px) {
   .container {
     padding-inline: 1.25rem;
-    transition: padding 0.3s ease;
   }
 
   .nav-buttons {
     column-gap: 1.25em;
-    transition: column-gap 0.3s ease;
   }
 
   .nav-menu {
     padding-left: 7rem;
-    transition: padding 0.3s ease;
   }
 
   .header-deco {
     left: 56px;
-    transition: left 0.3s ease;
   }
 
   .home-description,
@@ -1891,48 +1842,39 @@ textarea {
     margin-inline: auto;
     transform: translateY(-15%) !important;
     zoom: 0.8;
-    transition: transform 0.3s ease, zoom 0.3s ease;
   }
 
   .home-socials {
     transform: translateY(-100%) !important;
-    transition: transform 0.3s ease;
   }
 
   .home-data {
     transform: scale(0.6) !important;
-    transition: transform 0.3s ease;
   }
 
   .home-data-two {
     left: clamp(-3rem, -5.2rem + 75.8vw, 30.5rem);
-    transition: left 0.3s ease;
   }
 
   .home-banner {
     width: 100%;
-    transition: width 0.3s ease;
   }
 
   .home-profile {
     justify-self: center;
-    transition: justify-self 0.3s ease;
   }
 
   .skills-container {
     margin-right: -1.5rem;
     margin-left: -1.5rem;
-    transition: margin 0.3s ease;
   }
 
   .resume-container {
     margin-inline: 1.4rem;
-    transition: grid-template-columns 0.3s ease, row-gap 0.3s ease;
   }
 
   .resume-item {
     zoom: 0.85;
-    transition: grid-template-columns 0.3s ease, row-gap 0.3s ease;
   }
 }
 
@@ -1941,7 +1883,6 @@ textarea {
   .nav-menu {
     padding-left: 6rem;
     zoom: 0.7;
-    transition: padding 0.3s ease, zoom 0.3s ease;
   }
 
   .home-description,
@@ -1949,87 +1890,71 @@ textarea {
     margin-inline: auto;
     transform: translateY(-12%) !important;
     zoom: 0.7;
-    transition: transform 0.3s ease, zoom 0.3s ease;
   }
 
   .home-job {
     zoom: 0.7;
-    transition: zoom 0.3s ease;
   }
 
   .home-socials {
     transform: translateY(-40%) !important;
     zoom: 0.7;
-    transition: transform 0.3s ease, zoom 0.3s ease;
   }
 
   .header-deco {
     left: 40px;
-    transition: left 0.3s ease;
   }
 
   .home-banner,
   .home-img-wrapper {
     width: 100%;
     zoom: 0.7;
-    transition: width 0.3s ease, zoom 0.3s ease;
   }
 
   .home-profile {
     justify-self: center;
-    transition: justify-self 0.3s ease;
   }
 
   .home-title {
     justify-self: center;
     zoom: 0.5;
-    transition: zoom 0.3s ease;
   }
 
   .home-data-two {
     left: clamp(-3rem, -5.2rem + 88.8vw, 30.5rem);
-    transition: left 0.3s ease;
   }
 
   .home-description {
     transform: translateY(-6%);
     zoom: 0.6;
-    transition: transform 0.3s ease, zoom 0.3s ease;
   }
 
   .card {
     padding-inline: 2rem;
-    transition: padding 0.3s ease;
   }
 
   .projects {
     zoom: 0.8;
-    transition: zoom 0.3s ease;
   }
 
   .services {
     zoom: 0.8;
-    transition: zoom 0.3s ease;
   }
 
   .resume-item {
     zoom: 0.6;
-    transition: zoom 0.3s ease;
   }
 
   .skills {
     zoom: 0.65;
-    transition: zoom 0.3s ease;
   }
 
   .section-title {
     zoom: 0.8;
-    transition: zoom 0.3s ease;
   }
 
   .contact {
     zoom: 0.7;
-    transition: zoom 0.3s ease;
   }
 }
 
@@ -2037,7 +1962,6 @@ textarea {
   .nav-menu {
     padding-left: 6rem;
     zoom: 0.7;
-    transition: padding 0.3s ease, zoom 0.3s ease;
   }
 
   .home-description,
@@ -2045,87 +1969,71 @@ textarea {
     margin-inline: auto;
     transform: translateY(-5%) !important;
     zoom: 0.7;
-    transition: transform 0.3s ease, zoom 0.3s ease;
   }
 
   .home-job {
     zoom: 0.7;
-    transition: zoom 0.3s ease;
   }
 
   .home-socials {
     transform: translateY(-40%) !important;
     zoom: 0.7;
-    transition: transform 0.3s ease, zoom 0.3s ease;
   }
 
   .header-deco {
     left: 40px;
-    transition: left 0.3s ease;
   }
 
   .home-banner,
   .home-img-wrapper {
     width: 100%;
     zoom: 0.7;
-    transition: width 0.3s ease, zoom 0.3s ease;
   }
 
   .home-profile {
     justify-self: center;
-    transition: justify-self 0.3s ease;
   }
 
   .home-title {
     justify-self: center;
     zoom: 0.5;
-    transition: zoom 0.3s ease;
   }
 
   .home-data-two {
     left: clamp(-3rem, -5.2rem + 88.8vw, 30.5rem);
-    transition: left 0.3s ease;
   }
 
   .home-description {
     transform: translateY(-6%);
     zoom: 0.6;
-    transition: transform 0.3s ease, zoom 0.3s ease;
   }
 
   .card {
     padding-inline: 2rem;
-    transition: padding 0.3s ease;
   }
 
   .projects {
     zoom: 0.6;
-    transition: zoom 0.3s ease;
   }
 
   .services {
     zoom: 0.8;
-    transition: zoom 0.3s ease;
   }
 
   .resume {
     zoom: 0.65;
-    transition: zoom 0.3s ease;
   }
 
   .skills {
     zoom: 0.45;
-    transition: zoom 0.3s ease;
   }
 
   .section-title {
     zoom: 0.6;
-    transition: zoom 0.3s ease;
   }
 
   .contact {
     zoom: 0.7;
-    transition: zoom 0.3s ease;
   }
 }
 

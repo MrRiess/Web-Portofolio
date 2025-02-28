@@ -114,14 +114,14 @@ const scrollActive = () => {
 window.addEventListener('scroll', scrollActive);
 
 /*=============== SWIPER ===============*/
+// Inisialisasi Swiper untuk layanan
 var servicesSwiper = new Swiper('.services-swiper', {
   spaceBetween: 32,
-
   pagination: {
     el: '.swiper-pagination',
     clickable: true,
   },
-
+  loop: true, // Menjadikan swiper looping
   breakpoints: {
     769: {
       slidesPerView: 2,
@@ -132,16 +132,11 @@ var servicesSwiper = new Swiper('.services-swiper', {
   },
 });
 
-// Inisialisasi Swiper untuk carousel di dalam popup
-var certificateSwiper = new Swiper('.certificate-swiper', {
-  spaceBetween: 32,
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-});
 
 /*=============== POP UP ===============*/
+// Inisialisasi Swiper untuk carousel di dalam popup
+var certificateSwiper = null;
+
 function openPopup(popupId) {
   const popup = document.getElementById(popupId);
   const overlay = document.createElement('div');
@@ -151,10 +146,11 @@ function openPopup(popupId) {
   popup.classList.add('active');
   overlay.classList.add('active');
 
-  // Inisialisasi Swiper saat popup dibuka
+  // Inisialisasi Swiper saat popup dibuka (hanya untuk popup tertentu)
   if (popupId === 'certificate-popup-waiwai' && !certificateSwiper) {
     certificateSwiper = new Swiper('.certificate-swiper', {
       spaceBetween: 32,
+      loop: true,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
@@ -197,6 +193,7 @@ function closePopup(popupId) {
 
 // Fungsi untuk menangani penekanan tombol
 function handleKeyDown(event) {
+  // Cek jika tombol Esc (key code 27) atau Backspace (key code 8) ditekan
   if (event.keyCode === 27 || event.keyCode === 8) {
     const activePopup = document.querySelector('.popup.active');
     if (activePopup) {
@@ -204,21 +201,6 @@ function handleKeyDown(event) {
     }
   }
 }
-
-/*=============== POP UP END ===============*/
-
-/*=============== MIXITUP FILTER PORTFOLIO ===============*/
-var mixer = mixitup('.projects-container', {
-  selectors: {
-    target: '.mix',
-  },
-  animation: {
-    duration: 300,
-  },
-  load: {
-    filter: 'all', // Filter default saat pertama kali di-load
-  },
-});
 
 /* Active Projects */
 const linkProjects = document.querySelectorAll('.projects-item');
