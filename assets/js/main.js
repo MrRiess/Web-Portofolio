@@ -113,7 +113,7 @@ const scrollActive = () => {
 // Tambahkan event listener untuk scroll
 window.addEventListener('scroll', scrollActive);
 
-/*=============== SERVICES SWIPER ===============*/
+/*=============== SWIPER ===============*/
 var servicesSwiper = new Swiper('.services-swiper', {
   spaceBetween: 32,
 
@@ -132,6 +132,15 @@ var servicesSwiper = new Swiper('.services-swiper', {
   },
 });
 
+// Inisialisasi Swiper untuk carousel di dalam popup
+var certificateSwiper = new Swiper('.certificate-swiper', {
+  spaceBetween: 32,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+});
+
 /*=============== POP UP ===============*/
 function openPopup(popupId) {
   const popup = document.getElementById(popupId);
@@ -142,6 +151,17 @@ function openPopup(popupId) {
   popup.classList.add('active');
   overlay.classList.add('active');
 
+  // Inisialisasi Swiper saat popup dibuka
+  if (popupId === 'certificate-popup-waiwai' && !certificateSwiper) {
+    certificateSwiper = new Swiper('.certificate-swiper', {
+      spaceBetween: 32,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+  }
+
   // Tutup popup saat overlay diklik
   overlay.addEventListener('click', () => {
     closePopup(popupId);
@@ -151,13 +171,18 @@ function openPopup(popupId) {
   document.addEventListener('keydown', handleKeyDown);
 }
 
-// Fungsi untuk menutup popup
 function closePopup(popupId) {
   const popup = document.getElementById(popupId);
   const overlay = document.querySelector('.overlay');
 
   popup.classList.remove('active');
   overlay.classList.remove('active');
+
+  // Hancurkan Swiper saat popup ditutup
+  if (certificateSwiper) {
+    certificateSwiper.destroy();
+    certificateSwiper = null;
+  }
 
   // Hapus overlay dari DOM setelah animasi selesai
   setTimeout(() => {
@@ -172,7 +197,6 @@ function closePopup(popupId) {
 
 // Fungsi untuk menangani penekanan tombol
 function handleKeyDown(event) {
-  // Cek jika tombol Esc (key code 27) atau Backspace (key code 8) ditekan
   if (event.keyCode === 27 || event.keyCode === 8) {
     const activePopup = document.querySelector('.popup.active');
     if (activePopup) {
