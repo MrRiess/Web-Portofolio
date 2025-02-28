@@ -1893,7 +1893,15 @@ textarea {
 }
 
 /* For small devices */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 385px) {
+  .resume-container {
+    margin-inline: 0rem;
+  }
+
+  .projects-tags {
+    zoom: 0.8;
+  }
+
   .popup-content-resume h2,
   .popup-content h2 {
     font-size: 0.9rem; /* Ukuran font lebih kecil */
@@ -1986,7 +1994,7 @@ textarea {
   }
 }
 
-@media screen and (max-width: 325px) {
+@media screen and (max-width: 255px) {
   .popup-content-resume h2,
   .popup-content h2 {
     font-size: 0.7rem; /* Ukuran font lebih kecil */
