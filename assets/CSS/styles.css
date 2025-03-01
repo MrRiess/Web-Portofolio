@@ -1,7 +1,8 @@
-/*=============== GOOGLE FONTS ===============*/
+/* START GOOGLE FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@100..900&family=Montserrat+Alternates:wght@600;700;800&&display=swap');
+/* END GOOGLE FONTS */
 
-/*=============== VARIABLE CSS ===============*/
+/* START VARIABLE CSS */
 :root {
   --hue: 155;
   --first-color: hsl(var(--hue), 60%, 40%);
@@ -13,27 +14,16 @@
   --white-color: hsl(0, 0%, 100%);
   --shadow-color: hsla(var(--hue), 80%, 10%, 0.2);
 
-  /*=============== Gradient Color ===============*/
   --gradient-start: hsl(var(--hue), 70%, 50%);
   --gradient-end: hsl(calc(var(--hue) + 45), 70%, 50%);
-  --gradient-color: linear-gradient(
-    235deg,
-    var(--gradient-start),
-    var(--gradient-end)
-  );
+  --gradient-color: linear-gradient(235deg, var(--gradient-start), var(--gradient-end));
   --gradient-text-start: hsl(var(--hue), 60%, 30%);
   --gradient-text-end: hsl(calc(var(--hue) + 45), 60%, 30%);
-  --gradient-text: linear-gradient(
-    235deg,
-    var(--gradient-text-start),
-    var(--gradient-text-end)
-  );
+  --gradient-text: linear-gradient(235deg, var(--gradient-text-start), var(--gradient-text-end));
 
-  /*=============== FONT FAMILY ===============*/
   --body-font: 'Jost', sans-serif;
   --second-font: 'Montserrat Alternates', sans-serif;
 
-  /*=============== FONT SIZES ===============*/
   --big-font-size: 5.5rem;
   --h1-font-size: 2.75rem;
   --h2-font-size: 1.75rem;
@@ -44,31 +34,16 @@
   --small-font-size: 0.875rem;
   --smaller-font-size: 0.8125rem;
 
-  /*=============== FONT WEIGHTS ===============*/
   --font-medium: 500;
   --font-semi-bold: 600;
   --font-bold: 700;
   --font-black: 800;
 
-  /*=============== TRANSITION ===============*/
   --transition: cubic-bezier(0.3, 0, 0.3, 1);
 }
+/* END VARIABLE CSS */
 
-/*=============== Responsive Typogarphy ===============*/
-@media screen and (max-width: 1024) {
-  :root {
-    --big-font-size: 3rem;
-    --h1-font-size: 2rem;
-    --h2-font-size: 1.25rem;
-    --h3-font-size: 1.125rem;
-    --larger-font-size: 1.25rem;
-    --large-font-size: 1rem;
-    --normal-font-size: 0.938rem;
-    --small-font-size: 0.812rem;
-  }
-}
-
-/*=============== DARK THEME ===============*/
+/* START DARK THEME */
 .dark {
   --title-color: hsl(0, 0%, 100%);
   --text-color: hsl(0, 0%, 92%);
@@ -81,8 +56,9 @@
 .dark .shape {
   filter: invert(1);
 }
+/* END DARK THEME */
 
-/*=============== BASE ===============*/
+/* START BASE */
 * {
   margin: 0;
   padding: 0;
@@ -95,10 +71,7 @@ html {
   scrollbar-color: hsl(var(--hue), 20%, 65%) hsl(var(--hue), 20%, 85%);
 }
 
-body,
-button,
-input,
-textarea {
+body, button, input, textarea {
   color: var(--text-color);
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
@@ -108,10 +81,7 @@ body {
   background-color: var(--body-color);
 }
 
-h1,
-h2,
-h3,
-larger {
+h1, h2, h3, larger {
   color: var(--title-color);
   font-family: var(--second-font);
   font-weight: var(--font-bold);
@@ -130,48 +100,29 @@ img {
   max-width: 100%;
 }
 
-button,
-input,
-textarea {
+button, input, textarea {
   border: none;
   outline: none;
   background-color: transparent;
 }
+/* END BASE */
 
-/*=============== REUSABLE CSS CLASSES ===============*/
-.home-title span,
-.nav-logo,
-.ri-add-line,
-.ri-subtract-line,
-.ri-arrow-right-line,
-.active-projects,
-.social-link:hover,
-.attachment-link:hover,
-.active-projects:hover,
-.projects-item:hover {
+/* START REUSABLE CSS CLASSES */
+.home-title span, .nav-logo, .ri-add-line, .ri-subtract-line, .ri-arrow-right-line, .active-projects, .social-link:hover, .attachment-link:hover, .active-projects:hover, .projects-item:hover {
   background: var(--gradient-color) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   font-weight: var(--font-semi-bold);
 }
 
-.bold-color-span span,
-.home-subtitle span,
-.home-job span,
-.footer-copyright span,
-.home-data-title span,
-.contact-form-label b,
-.custom-bullet::before {
+.bold-color-span span, .home-subtitle span, .home-job span, .footer-copyright span, .home-data-title span, .contact-form-label b, .custom-bullet::before {
   background: var(--gradient-text) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   font-weight: var(--font-semi-bold);
 }
 
-.bold-color,
-.home-description span,
-.skills-description span,
-.resume-description span {
+.bold-color, .home-description span, .skills-description span, .resume-description span {
   background: var(--gradient-text) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -198,8 +149,8 @@ textarea {
 }
 
 .logo {
-  width: 3.5em;
-  height: 3.5em;
+  width: 3em;
+  height: 3em;
   object-fit: contain;
   margin-right: 0.5em;
 }
@@ -215,16 +166,9 @@ textarea {
   transform: translateY(0);
 }
 
-.reveal:nth-child(2) {
-  transition-delay: 0.2s;
-}
-.reveal:nth-child(3) {
-  transition-delay: 0.4s;
-}
-
-.reveal:nth-child(4) {
-  transition-delay: 0.5s;
-}
+.reveal:nth-child(2) { transition-delay: 0.2s; }
+.reveal:nth-child(3) { transition-delay: 0.4s; }
+.reveal:nth-child(4) { transition-delay: 0.5s; }
 
 .social-links {
   display: inline-flex;
@@ -241,8 +185,7 @@ textarea {
   padding-block: 7rem 3.5rem;
 }
 
-.btn,
-.home-link {
+.btn, .home-link {
   display: inline-block;
   color: var(--title-color);
   font-size: var(--small-font-size);
@@ -253,23 +196,21 @@ textarea {
 
 .btn {
   padding: 1rem 2rem;
-  border-radius: 12px; /* Tidak terlalu lonjong */
+  border-radius: 25px;
   border: none;
-  background: rgba(255, 255, 255, 0.1); /* Glass effect */
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2),
-              -4px -4px 10px rgba(255, 255, 255, 0.1);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2), -4px -4px 10px rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
   overflow: hidden;
   z-index: 1;
 }
 
 .btn:hover {
-  background: var(--gradient-color); /* Menggunakan gradient yang sudah ada */
+  background: var(--gradient-color);
   color: white;
-  box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3),
-              -6px -6px 15px rgba(255, 255, 255, 0.2);
-  transform: translateY(-3px); /* Efek mengangkat tombol */
+  box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3), -6px -6px 15px rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
 }
 
 .btn::after {
@@ -284,12 +225,6 @@ textarea {
   border-radius: 50%;
   z-index: -1;
   transform: translate(-50%, -50%) scale(0);
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  box-shadow: 0 100px 1000px 100px var(--shadow-color);
 }
 
 .btn:hover::after {
@@ -340,16 +275,10 @@ textarea {
   z-index: 1;
 }
 
-.deco-left {
-  left: -72px;
-}
+.deco-left { left: -72px; }
+.deco-right { right: -72px; }
 
-.deco-right {
-  right: -72px;
-}
-
-.section-deco::before,
-.section-deco::after {
+.section-deco::before, .section-deco::after {
   content: '';
   position: absolute;
   left: 50%;
@@ -377,31 +306,19 @@ textarea {
   bottom: -206px;
 }
 
-.deco-left .shape {
-  left: -166px;
-}
-
-.deco-right .shape {
-  right: -166px;
-}
+.deco-left .shape { left: -166px; }
+.deco-right .shape { right: -166px; }
 
 .section:nth-child(odd) {
-  background: linear-gradient(
-    0deg,
-    var(--container-color) 0%,
-    var(--body-color) 100%
-  );
+  background: linear-gradient(0deg, var(--container-color) 0%, var(--body-color) 100%);
 }
 
 .section:nth-child(even) {
-  background: linear-gradient(
-    180deg,
-    var(--container-color) 0%,
-    var(--body-color) 100%
-  );
+  background: linear-gradient(180deg, var(--container-color) 0%, var(--body-color) 100%);
 }
+/* END REUSABLE CSS CLASSES */
 
-/*=============== LAYOUT ===============*/
+/* START LAYOUT */
 .container {
   max-width: 1650px;
   margin-inline: auto;
@@ -416,8 +333,9 @@ textarea {
 .grid {
   display: grid;
 }
+/* END LAYOUT */
 
-/*=============== HEADER & NAV ===============*/
+/* START HEADER & NAV */
 .header {
   background-color: transparent;
   position: fixed;
@@ -464,8 +382,7 @@ textarea {
   column-gap: 1.75rem;
 }
 
-.nav-settings,
-.nav-toggle {
+.nav-settings, .nav-toggle {
   cursor: pointer;
 }
 
@@ -481,8 +398,7 @@ textarea {
   z-index: 1001;
 }
 
-.nav-toggle::before,
-.nav-toggle::after {
+.nav-toggle::before, .nav-toggle::after {
   content: '';
   width: 100%;
   height: 2px;
@@ -492,13 +408,8 @@ textarea {
   transition: all 0.7s var(--transition);
 }
 
-.nav-toggle::before {
-  top: 7px;
-}
-
-.nav-toggle::after {
-  bottom: 7px;
-}
+.nav-toggle::before { top: 7px; }
+.nav-toggle::after { bottom: 7px; }
 
 .nav-menu {
   position: fixed;
@@ -543,10 +454,7 @@ textarea {
   left: -160px;
 }
 
-/* Show Menu */
-.show-menu {
-  right: 0;
-}
+.show-menu { right: 0; }
 
 .animate-toggle::before {
   transform: rotate(45deg);
@@ -558,33 +466,29 @@ textarea {
   top: 12px;
 }
 
-/* Acitve Link */
-.active-link {
-  color: var(--first-color);
-}
+.active-link { color: var(--first-color); }
 
-/* Change Background Header */
 .bg-header {
   background-color: var(--container-color);
   transition: 0.9s var(--transition);
   opacity: 1;
 }
 
-.bg-header.fade-out {
-  opacity: 0;
-}
+.bg-header.fade-out { opacity: 0; }
 
 .bg-header::before {
   opacity: 1;
   backdrop-filter: blur(5px);
 }
+/* END HEADER & NAV */
 
-/*=============== MAIN ===============*/
+/* START MAIN */
 .main {
   overflow: hidden;
 }
+/* END MAIN */
 
-/*=============== HOME ===============*/
+/* START HOME */
 .home-container {
   padding-block: 2.25rem;
 }
@@ -697,8 +601,7 @@ textarea {
   right: 10%;
 }
 
-.shape-2,
-.shape-3 {
+.shape-2, .shape-3 {
   width: clamp(8rem, 2.1rem + 7.6vw, 8.75rem);
 }
 
@@ -738,8 +641,9 @@ textarea {
   height: 2px;
   background-color: var(--border-color);
 }
+/* END HOME */
 
-/*=============== SERVICES ===============*/
+/* START SERVICES */
 .card {
   background-color: var(--container-color);
   padding: 2rem 2.25rem;
@@ -772,7 +676,6 @@ textarea {
   min-height: 175px;
 }
 
-/* Swiper */
 .swiper-pagination {
   position: initial;
   margin-top: 1.25rem;
@@ -782,17 +685,6 @@ textarea {
   position: initial;
   margin-top: -0.4rem;
 }
-
-/* .swiper-pagination-bullets::before {
-    content: '';
-    position: absolute;
-    top: 1.2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: relative;
-    height: 2px;
-    background-color: var(--border-color);
-} */
 
 .swiper-pagination-bullet {
   border: 2px solid var(--border-color);
@@ -804,7 +696,7 @@ textarea {
 }
 
 .swiper-pagination-bullet:not(:last-child) {
-  margin-right: 1.25rem !important;
+  margin-right: 0.5rem !important;
 }
 
 .swiper-pagination-bullet-active {
@@ -812,8 +704,9 @@ textarea {
   transform: scale(1.7);
   border-width: 1px;
 }
+/* END SERVICES */
 
-/*=============== SKILLS ===============*/
+/* START SKILLS */
 .skills-item {
   background-color: var(--container-color);
   padding: 0rem 1.25rem;
@@ -861,8 +754,7 @@ textarea {
   font-size: var(--small-font-size);
 }
 
-.skills-bar,
-.skills-percentage {
+.skills-bar, .skills-percentage {
   height: 2px;
 }
 
@@ -891,8 +783,9 @@ textarea {
   box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.568);
   z-index: 2;
 }
+/* END SKILLS */
 
-/*=============== PROJECTS ===============*/
+/* START PROJECTS */
 .projects-list {
   display: flex;
   flex-wrap: wrap;
@@ -901,7 +794,6 @@ textarea {
   margin-bottom: 3.75rem;
 }
 
-/* Styling untuk projects Card */
 .projects-container {
   display: grid;
   justify-content: center;
@@ -993,35 +885,16 @@ textarea {
   font-size: var(--smaller-font-size);
 }
 
-.purple {
-  background: purple;
-}
-.yellow {
-  background: goldenrod;
-}
-.green {
-  background: green;
-}
-.blue {
-  background: blue;
-}
-.red {
-  background: red;
-}
-.black {
-  background: black;
-}
-.brown {
-  background: brown;
-}
-.orange {
-  background: orange;
-}
-.gold {
-  background: gold;
-}
+.purple { background: purple; }
+.yellow { background: goldenrod; }
+.green { background: green; }
+.blue { background: blue; }
+.red { background: red; }
+.black { background: black; }
+.brown { background: brown; }
+.orange { background: orange; }
+.gold { background: gold; }
 
-/* Styling untuk Pop-up */
 .popup {
   position: fixed;
   top: 50%;
@@ -1102,16 +975,14 @@ textarea {
   box-shadow: 0 0 12px 10px var(--shadow-color);
 }
 
-.popup-content-resume h2,
-.popup-content h2 {
+.popup-content-resume h2, .popup-content h2 {
   margin-bottom: 10px;
   margin-top: 10px;
   font-size: 24px;
   color: var(--title-color);
 }
 
-.popup-content-resume p,
-.popup-content p {
+.popup-content-resume p, .popup-content p {
   margin-top: 5px;
   font-size: 16px;
   color: #555;
@@ -1152,8 +1023,8 @@ textarea {
 
 .attachment-container {
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .close-btn {
@@ -1165,7 +1036,6 @@ textarea {
   color: var(--first-color);
 }
 
-/* Styling untuk Penghargaan */
 .achievement {
   background: #222;
   padding: 10px;
@@ -1175,7 +1045,6 @@ textarea {
   color: #ffcc00;
 }
 
-/* Styling untuk File Cards */
 .files {
   display: flex;
   flex-wrap: wrap;
@@ -1205,7 +1074,6 @@ textarea {
   font-size: 18px;
 }
 
-/* Active projects */
 .active-projects::before {
   width: 60%;
 }
@@ -1223,15 +1091,15 @@ textarea {
   font-weight: bold;
   color: var(--title-color);
 }
+/* END PROJECTS */
 
-/*=============== RESUME ===============*/
+/* START RESUME */
 .resume-container {
   grid-template-columns: repeat(3, 1fr);
   column-gap: 1.5rem;
 }
 
-.resume-title,
-.resume-item {
+.resume-title, .resume-item {
   border-bottom: 2px solid var(--border-color);
 }
 
@@ -1307,7 +1175,7 @@ textarea {
 }
 
 .resume-content-title {
-  font-size: var(--large-font-size);
+  font-size: var(--normal-font-size);
 }
 
 .resume-date {
@@ -1323,7 +1191,6 @@ textarea {
   text-align: justify;
 }
 
-/* Swiper Container */
 .certificate-swiper {
   width: 100%;
   max-width: 600px;
@@ -1338,9 +1205,10 @@ textarea {
 
 .swiper-wrapper {
   align-items: center;
-  font-weight: ;
 }
-/*=============== CONTACT ===============*/
+/* END RESUME */
+
+/* START CONTACT */
 .contact {
   padding-bottom: 14rem;
   position: relative;
@@ -1359,8 +1227,7 @@ textarea {
   margin-bottom: 2.5rem;
 }
 
-.contact-icon,
-.contact-form-input {
+.contact-icon, .contact-form-input {
   border: 2px solid var(--border-color);
   background-color: var(--container-color);
 }
@@ -1438,8 +1305,9 @@ textarea {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
+/* END CONTACT */
 
-/*=============== FOOTER ===============*/
+/* START FOOTER */
 .footer {
   border-top: var(--shadow-color);
   background-color: var(--container-color);
@@ -1459,8 +1327,9 @@ textarea {
 .footer-copyright span {
   color: var(--first-color);
 }
+/* END FOOTER */
 
-/*=============== STYLE SWITCHER ===============*/
+/* START SWITCHER */
 .style-switcher {
   position: fixed;
   top: 0;
@@ -1548,13 +1417,13 @@ textarea {
   cursor: pointer;
 }
 
-/* Show switcher */
 .show-switcher {
   right: 0;
 }
 
-/*=============== BREAKPOINTS ===============*/
-/* For larger devices */
+/* END SWITCHER */
+
+/* START BREAKPOINTS */
 @media screen and (max-width: 1600px) {
   .section-deco:not(.header-deco) {
     display: none;
@@ -1632,10 +1501,6 @@ textarea {
 
   .skills-item {
     margin-inline: 2rem !important;
-  }
-
-  .resume-header-title {
-    font-size: var(--larger-font-size);
   }
 
   .resume-container {
@@ -1752,7 +1617,6 @@ textarea {
   }
 }
 
-/* For medium devices */
 @media screen and (max-width: 768px) {
   .nav-menu,
   .style-switcher {
@@ -1831,12 +1695,12 @@ textarea {
 @media screen and (max-width: 576px) {
   .popup-content-resume h2,
   .popup-content h2 {
-    font-size: 1.25rem; /* Ukuran font lebih kecil */
+    font-size: 1.25rem;
   }
 
   .popup-content-resume p,
   .popup-content p {
-    font-size: 0.875rem; /* Ukuran font lebih kecil */
+    font-size: 0.875rem;
   }
 
   .swiper-pagination {
@@ -1900,7 +1764,6 @@ textarea {
   }
 }
 
-/* For small devices */
 @media screen and (max-width: 385px) {
   .resume-container {
     margin-inline: 0rem;
@@ -1912,12 +1775,12 @@ textarea {
 
   .popup-content-resume h2,
   .popup-content h2 {
-    font-size: 0.9rem; /* Ukuran font lebih kecil */
+    font-size: 0.9rem;
   }
 
   .popup-content-resume p,
   .popup-content p {
-    font-size: 0.615rem; /* Ukuran font lebih kecil */
+    font-size: 0.615rem;
   }
 
   .swiper-pagination {
@@ -2005,12 +1868,12 @@ textarea {
 @media screen and (max-width: 255px) {
   .popup-content-resume h2,
   .popup-content h2 {
-    font-size: 0.7rem; /* Ukuran font lebih kecil */
+    font-size: 0.7rem;
   }
 
   .popup-content-resume p,
   .popup-content p {
-    font-size: 0.415rem; /* Ukuran font lebih kecil */
+    font-size: 0.415rem;
   }
 
   .swiper-pagination {
@@ -2094,9 +1957,9 @@ textarea {
     zoom: 0.7;
   }
 }
+/* END BREAKPOINTS */
 
-/*=============== ANIMATIONS ===============*/
-
+/* START ANIMATIONS */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -2112,3 +1975,4 @@ textarea {
     opacity: 1;
   }
 }
+/* END ANIMATIONS */

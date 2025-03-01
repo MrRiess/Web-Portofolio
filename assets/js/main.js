@@ -2,32 +2,28 @@
 const navMenu = document.getElementById('nav-menu'),
   navToggle = document.getElementById('nav-toggle');
 
-/* Menu Show - Hidden */
 navToggle.addEventListener('click', () => {
   navMenu.classList.toggle('show-menu');
   navToggle.classList.toggle('animate-toggle');
 });
 
 document.addEventListener('click', (event) => {
-  const isClickInsideMenu = navMenu.contains(event.target);
-  const isClickOnToggle = navToggle.contains(event.target);
-
-  if (!isClickInsideMenu && !isClickOnToggle) {
+  if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
     navMenu.classList.remove('show-menu');
     navToggle.classList.remove('animate-toggle');
   }
 });
 
 /*=============== FADE IN ===============*/
-/* Scroll */
 const reveal = document.querySelectorAll('.reveal');
 
 const revealOnScroll = () => {
   reveal.forEach((section) => {
     const sectionTop = section.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
+    const sectionBottom = section.getBoundingClientRect().bottom;
 
-    if (sectionTop < windowHeight * 0.75) {
+    // Jika bagian atas atau bawah elemen berada dalam viewport
+    if (sectionTop < window.innerHeight * 0.95 && sectionBottom > 0) {
       section.classList.add('active');
     } else {
       section.classList.remove('active');
@@ -38,50 +34,23 @@ const revealOnScroll = () => {
 window.addEventListener('scroll', revealOnScroll);
 window.addEventListener('load', revealOnScroll);
 
-function scrollReveal() {
-  const reveals = document.querySelectorAll('.reveal');
-
-  reveals.forEach((reveal) => {
-    const revealTop = reveal.getBoundingClientRect().top;
-    const revealBottom = reveal.getBoundingClientRect().bottom;
-
-    if (revealTop < window.innerHeight && revealBottom > 0) {
-      reveal.classList.add('active');
-    } else {
-      reveal.classList.remove('active');
-    }
-  });
-}
-
-window.addEventListener('scroll', scrollReveal);
-window.addEventListener('load', scrollReveal);
-
-setTimeout(startFadeOut, 2000);
-
 /*=============== REMOVE MENU MOBILE ===============*/
 const navLink = document.querySelectorAll('.nav-link');
 
-const linkAction = () => {
-  const navMenu = document.getElementById('nav-menu');
-
-  navToggle.classList.remove('animate-toggle');
-  navMenu.classList.remove('show-menu');
-};
-
-navLink.forEach((n) => n.addEventListener('click', linkAction));
+navLink.forEach((n) =>
+  n.addEventListener('click', () => {
+    navMenu.classList.remove('show-menu');
+    navToggle.classList.remove('animate-toggle');
+  })
+);
 
 /*=============== HEADER FADEOUT ===============*/
 const bgHeader = document.querySelector('.bg-header');
-function startFadeOut() {
-  bgHeader.classList.add('fade-out');
-}
+setTimeout(() => bgHeader.classList.add('fade-out'), 2000);
 
 const scrollHeader = () => {
   const header = document.getElementById('header');
-
-  this.scrollY >= 20
-    ? header.classList.add('bg-header')
-    : header.classList.remove('bg-header');
+  header.classList.toggle('bg-header', window.scrollY >= 20);
 };
 
 window.addEventListener('scroll', scrollHeader);
@@ -91,122 +60,82 @@ const sections = document.querySelectorAll('section[id]');
 
 const scrollActive = () => {
   const scrollY = window.pageYOffset;
-
   sections.forEach((current) => {
     const sectionHeight = current.offsetHeight;
     const sectionTop = current.offsetTop - 50;
-    const sectionId = current.getAttribute('id');
     const sectionClass = document.querySelector(
-      `.nav-menu a[href*="${sectionId}"]`
+      `.nav-menu a[href*="${current.getAttribute('id')}"]`
     );
-
     if (sectionClass) {
-      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        sectionClass.classList.add('active-link');
-      } else {
-        sectionClass.classList.remove('active-link');
-      }
+      sectionClass.classList.toggle(
+        'active-link',
+        scrollY > sectionTop && scrollY <= sectionTop + sectionHeight
+      );
     }
   });
 };
 
-// Tambahkan event listener untuk scroll
 window.addEventListener('scroll', scrollActive);
 
 /*=============== SWIPER ===============*/
-// Inisialisasi Swiper untuk layanan
-var servicesSwiper = new Swiper('.services-swiper', {
+const servicesSwiper = new Swiper('.services-swiper', {
   spaceBetween: 32,
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-  loop: true, // Menjadikan swiper looping
-  breakpoints: {
-    769: {
-      slidesPerView: 2,
-    },
-    1208: {
-      slidesPerView: 3,
-    },
-  },
+  pagination: { el: '.swiper-pagination', clickable: true },
+  loop: true,
+  breakpoints: { 769: { slidesPerView: 2 }, 1208: { slidesPerView: 3 } },
 });
 
 /*=============== POP UP ===============*/
-// Inisialisasi Swiper untuk carousel di dalam popup
-var certificateSwiper = null;
+let certificateSwiper = null;
+
 function openPopup(popupId) {
   const popup = document.getElementById(popupId);
   const overlay = document.createElement('div');
   overlay.classList.add('overlay');
-  overlay.setAttribute('id', 'popup-overlay'); // Tambahkan ID agar bisa ditemukan saat ditutup
   document.body.appendChild(overlay);
 
   popup.classList.add('active');
   overlay.classList.add('active');
 
-  const certificatePopups = new Set([
-    'certificate-popup-waiwai',
-    'certificate-popup-upsi',
-    'certificate-popup-gifu',
-    'certificate-popup-chubu',
-    'certificate-popup-payakumbuh',
-  ]);
-
-  // Inisialisasi Swiper jika popup yang dibuka termasuk dalam daftar
-  if (certificatePopups.has(popupId) && !certificateSwiper) {
+  if (!certificateSwiper && popupId.includes('certificate-popup')) {
     certificateSwiper = new Swiper('.certificate-swiper', {
       spaceBetween: 32,
       loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
+      pagination: { el: '.swiper-pagination', clickable: true },
     });
   }
 
-  // Tutup popup saat overlay diklik
   overlay.addEventListener('click', () => closePopup(popupId));
-
-  // Tambahkan event listener untuk tombol keyboard
   document.addEventListener('keydown', handleKeyDown);
 }
 
 function closePopup(popupId) {
   const popup = document.getElementById(popupId);
-  const overlay = document.getElementById('popup-overlay');
-
+  const overlay = document.querySelector('.overlay');
   if (popup) popup.classList.remove('active');
   if (overlay) {
     overlay.classList.remove('active');
-    setTimeout(() => overlay.remove(), 300); // Hapus overlay setelah animasi selesai
+    setTimeout(() => overlay.remove(), 300);
   }
-
-  // Hapus event listener untuk menghindari kebocoran memori
   document.removeEventListener('keydown', handleKeyDown);
 }
 
 function handleKeyDown(event) {
   if (event.key === 'Escape' || event.key === 'Backspace') {
     const activePopup = document.querySelector('.popup.active');
-    if (activePopup) {
-      closePopup(activePopup.id);
-    }
+    if (activePopup) closePopup(activePopup.id);
   }
 }
 
-
-/* Active Projects */
+/*=============== ACTIVE PROJECTS ===============*/
 const linkProjects = document.querySelectorAll('.projects-item');
 
-function activeProjects() {
-  linkProjects.forEach((a) => {
-    a.classList.remove('active-projects');
-  });
-  this.classList.add('active-projects');
-}
-
-linkProjects.forEach((a) => a.addEventListener('click', activeProjects));
+linkProjects.forEach((a) =>
+  a.addEventListener('click', () => {
+    linkProjects.forEach((item) => item.classList.remove('active-projects'));
+    a.classList.add('active-projects');
+  })
+);
 
 /*=============== RESUME ===============*/
 const accordionItems = document.querySelectorAll('.resume-item');
@@ -218,7 +147,6 @@ accordionItems.forEach((item) => {
 
   header.addEventListener('click', () => {
     const isOpen = item.classList.toggle('accordion-open');
-
     content.style.height = isOpen ? content.scrollHeight + 'px' : '0';
     icon.className = isOpen ? 'ri-subtract-line' : 'ri-add-line';
 
@@ -228,7 +156,7 @@ accordionItems.forEach((item) => {
         otherItem.classList.contains('accordion-open')
       ) {
         otherItem.querySelector('.resume-content').style.height = '0';
-        otherItem.querySelector('.resume-icon i').classList = 'ri-add-line';
+        otherItem.querySelector('.resume-icon i').className = 'ri-add-line';
         otherItem.classList.remove('accordion-open');
       }
     });
@@ -236,8 +164,7 @@ accordionItems.forEach((item) => {
 });
 
 document.addEventListener('click', (event) => {
-  const isClickInside = event.target.closest('.resume-item');
-  if (!isClickInside) {
+  if (!event.target.closest('.resume-item')) {
     accordionItems.forEach((item) => {
       item.classList.remove('accordion-open');
       item.querySelector('.resume-content').style.height = '0';
@@ -247,19 +174,7 @@ document.addEventListener('click', (event) => {
 });
 
 /*=============== EMAIL JS ===============*/
-function getWIBDateTime() {
-  const now = new Date();
-  const offset = 7; // WIB is UTC+7
-  const utc = now.getTime() + now.getTimezoneOffset() * 60000; // Convert to UTC
-  const wib = new Date(utc + 3600000 * offset); // Convert to WIB
-  return wib.toISOString(); // Format as ISO string
-}
-
 const contactForm = document.getElementById('contact-form'),
-  contactName = document.getElementById('contact-name'),
-  contactEmail = document.getElementById('contact-email'),
-  contactSubject = document.getElementById('contact-subject'),
-  contactMessage = document.getElementById('contact-message'),
   message = document.getElementById('message');
 
 const SUPABASE_URL = 'https://rgwphyerwjlignahtzys.supabase.co';
@@ -268,30 +183,14 @@ const SUPABASE_KEY =
 
 const sendFormData = async (e) => {
   e.preventDefault();
+  const formData = new FormData(contactForm);
 
-  if (
-    contactName.value === '' ||
-    contactEmail.value === '' ||
-    contactSubject.value === '' ||
-    contactMessage.value === ''
-  ) {
-    message.classList.remove('color-first');
+  if ([...formData.values()].some((value) => value === '')) {
     message.classList.add('color-red');
     message.textContent = 'Please fill in all the fields.';
-
-    setTimeout(() => {
-      message.textContent = '';
-    }, 7000);
+    setTimeout(() => (message.textContent = ''), 7000);
     return;
   }
-
-  const formData = {
-    name: contactName.value,
-    email: contactEmail.value,
-    subject: contactSubject.value,
-    message: contactMessage.value,
-    created_at: getWIBDateTime(), // Tambahkan waktu WIB
-  };
 
   try {
     const response = await fetch(`${SUPABASE_URL}/rest/v1/contacts`, {
@@ -301,18 +200,15 @@ const sendFormData = async (e) => {
         apikey: SUPABASE_KEY,
         Authorization: `Bearer ${SUPABASE_KEY}`,
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(Object.fromEntries(formData)),
     });
 
-    const data = await response.json();
-
     if (response.ok) {
-      message.classList.remove('color-red');
       message.classList.add('color-first');
       message.textContent = 'Message sent successfully.';
       contactForm.reset();
     } else {
-      throw new Error(data.message || 'Failed to send message');
+      throw new Error('Failed to send message');
     }
   } catch (error) {
     console.error('Error:', error);
@@ -320,89 +216,32 @@ const sendFormData = async (e) => {
     message.textContent = 'Message sent loading. Please Wait';
   }
 
-  setTimeout(() => {
-    message.textContent = '';
-  }, 10000);
+  setTimeout(() => (message.textContent = ''), 10000);
 };
 
 contactForm.addEventListener('submit', sendFormData);
-
-const sendEmail = (e) => {
-  e.preventDefault();
-
-  if (
-    contactName.value === '' ||
-    contactEmail.value === '' ||
-    contactSubject.value === '' ||
-    contactMessage.value === ''
-  ) {
-    message.classList.remove('color-first');
-    message.classList.add('color-red');
-    message.textContent = 'Please fill in all the fields.';
-
-    setTimeout(() => {
-      message.textContent = '';
-    }, 7000);
-    return;
-  }
-
-  emailjs
-    .sendForm(
-      'service_rmblcto',
-      'template_7qfnujf',
-      '#contact-form',
-      'E58mVnk7AvZaPera9'
-    )
-    .then(() => {
-      message.classList.remove('color-red');
-      message.classList.add('color-first');
-      message.textContent = 'Message sent successfully.';
-
-      setTimeout(() => {
-        message.textContent = '';
-      }, 10000);
-      contactForm.reset();
-    })
-    .catch((error) => {
-      console.error('EmailJS error:', error);
-      message.classList.add('color-red');
-      message.textContent = 'Failed to send message. Please try again.';
-    });
-};
-
-contactForm.addEventListener('submit', sendEmail);
 
 /*=============== STYLE SWITCHER ===============*/
 const styleSwitcher = document.getElementById('style-switcher'),
   switcherToggle = document.getElementById('switcher-toggle'),
   switcherClose = document.getElementById('switcher-close');
 
-/* Switcher show */
-switcherToggle.addEventListener('click', () => {
-  styleSwitcher.classList.add('show-switcher');
-});
-
-/* Switcher hidden */
-switcherClose.addEventListener('click', () => {
-  styleSwitcher.classList.remove('show-switcher');
-});
+switcherToggle.addEventListener('click', () =>
+  styleSwitcher.classList.add('show-switcher')
+);
+switcherClose.addEventListener('click', () =>
+  styleSwitcher.classList.remove('show-switcher')
+);
 
 /*=============== THEME COLORS ===============*/
 const colors = document.querySelectorAll('.style-switcher-color');
 
 colors.forEach((color) => {
-  color.onclick = () => {
+  color.addEventListener('click', () => {
     const activeColor = color.style.getPropertyValue('--hue');
-
-    // Hapus class active dari semua warna
     colors.forEach((c) => c.classList.remove('active-color'));
-    // Tambahkan class active ke warna yang dipilih
     color.classList.add('active-color');
-
-    // Update nilai --hue di root
     document.documentElement.style.setProperty('--hue', activeColor);
-
-    // Update gradient berdasarkan --hue baru
     document.documentElement.style.setProperty(
       '--gradient-start',
       `hsl(${activeColor}, 70%, 50%)`
@@ -411,7 +250,7 @@ colors.forEach((color) => {
       '--gradient-end',
       `hsl(${parseInt(activeColor) + 45}, 70%, 50%)`
     );
-  };
+  });
 });
 
 /*=============== LIGHT/DARK MODE ===============*/
@@ -422,5 +261,11 @@ document.querySelectorAll('input[name="body-theme"]').forEach((input) => {
   input.addEventListener('change', () => {
     currentTheme = input.value;
     document.body.className = currentTheme;
+    document.documentElement.style.setProperty(
+      '--gradient-text',
+      currentTheme === 'dark'
+        ? 'var(--gradient-color)'
+        : 'linear-gradient(235deg, var(--gradient-text-start), var(--gradient-text-end))'
+    );
   });
 });
