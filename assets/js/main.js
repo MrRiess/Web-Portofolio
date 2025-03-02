@@ -24,14 +24,17 @@ const reveal = document.querySelectorAll('.reveal');
 const revealOnScroll = () => {
   reveal.forEach((section) => {
     const { top, bottom } = section.getBoundingClientRect();
-    section.classList.toggle(
-      'active',
-      top < window.innerHeight * 1 && bottom > 0
-    );
+    const isVisible = top < window.innerHeight * 0.9 && bottom > 0;
+    section.classList.toggle('active', isVisible);
   });
 };
 
-window.addEventListener('scroll', revealOnScroll);
+let isScrolling;
+window.addEventListener('scroll', () => {
+  window.clearTimeout(isScrolling);
+  isScrolling = setTimeout(revealOnScroll, 50);
+});
+
 window.addEventListener('load', revealOnScroll);
 
 /*=============== REMOVE MENU MOBILE ===============*/
@@ -285,3 +288,19 @@ document.querySelectorAll('input[name="body-theme"]').forEach((input) => {
     );
   });
 });
+
+/*=============== MIXITUP ===============*/
+var containerEl = document.querySelector('.projects-container');
+if (containerEl) {
+  var mixer = mixitup(containerEl, {
+    selectors: {
+      target: '.mix',
+    },
+    animation: {
+      duration: 300,
+      easing: 'ease-in-out',
+    },
+  });
+}
+
+
