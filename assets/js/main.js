@@ -1,33 +1,33 @@
+'use strict';
+
 /*=============== MENU ===============*/
-const navMenu = document.getElementById('nav-menu'),
-  navToggle = document.getElementById('nav-toggle');
+const navMenu = document.getElementById('nav-menu');
+const navToggle = document.getElementById('nav-toggle');
 
-navToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('show-menu');
-  navToggle.classList.toggle('animate-toggle');
-});
+if (navToggle && navMenu) {
+  navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('show-menu');
+    navToggle.classList.toggle('animate-toggle');
+  });
 
-document.addEventListener('click', (event) => {
-  if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
-    navMenu.classList.remove('show-menu');
-    navToggle.classList.remove('animate-toggle');
-  }
-});
+  document.addEventListener('click', (event) => {
+    if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
+      navMenu.classList.remove('show-menu');
+      navToggle.classList.remove('animate-toggle');
+    }
+  });
+}
 
 /*=============== FADE IN ===============*/
 const reveal = document.querySelectorAll('.reveal');
 
 const revealOnScroll = () => {
   reveal.forEach((section) => {
-    const sectionTop = section.getBoundingClientRect().top;
-    const sectionBottom = section.getBoundingClientRect().bottom;
-
-    // Jika bagian atas atau bawah elemen berada dalam viewport
-    if (sectionTop < window.innerHeight * 0.95 && sectionBottom > 0) {
-      section.classList.add('active');
-    } else {
-      section.classList.remove('active');
-    }
+    const { top, bottom } = section.getBoundingClientRect();
+    section.classList.toggle(
+      'active',
+      top < window.innerHeight * 1 && bottom > 0
+    );
   });
 };
 
@@ -39,18 +39,18 @@ const navLink = document.querySelectorAll('.nav-link');
 
 navLink.forEach((n) =>
   n.addEventListener('click', () => {
-    navMenu.classList.remove('show-menu');
-    navToggle.classList.remove('animate-toggle');
+    navMenu?.classList.remove('show-menu');
+    navToggle?.classList.remove('animate-toggle');
   })
 );
 
 /*=============== HEADER FADEOUT ===============*/
 const bgHeader = document.querySelector('.bg-header');
-setTimeout(() => bgHeader.classList.add('fade-out'), 2000);
+bgHeader && setTimeout(() => bgHeader.classList.add('fade-out'), 2000);
 
 const scrollHeader = () => {
   const header = document.getElementById('header');
-  header.classList.toggle('bg-header', window.scrollY >= 20);
+  header?.classList.toggle('bg-header', window.scrollY >= 20);
 };
 
 window.addEventListener('scroll', scrollHeader);
@@ -66,12 +66,10 @@ const scrollActive = () => {
     const sectionClass = document.querySelector(
       `.nav-menu a[href*="${current.getAttribute('id')}"]`
     );
-    if (sectionClass) {
-      sectionClass.classList.toggle(
-        'active-link',
-        scrollY > sectionTop && scrollY <= sectionTop + sectionHeight
-      );
-    }
+    sectionClass?.classList.toggle(
+      'active-link',
+      scrollY > sectionTop && scrollY <= sectionTop + sectionHeight
+    );
   });
 };
 
@@ -88,7 +86,7 @@ const servicesSwiper = new Swiper('.services-swiper', {
 /*=============== POP UP ===============*/
 let certificateSwiper = null;
 
-function openPopup(popupId) {
+const openPopup = (popupId) => {
   const popup = document.getElementById(popupId);
   const overlay = document.createElement('div');
   overlay.classList.add('overlay');
@@ -97,7 +95,7 @@ function openPopup(popupId) {
   popup.classList.add('active');
   overlay.classList.add('active');
 
-  if (!certificateSwiper && popupId.includes('certificate-popup')) {
+  if (!certificateSwiper) {
     certificateSwiper = new Swiper('.certificate-swiper', {
       spaceBetween: 32,
       loop: true,
@@ -107,25 +105,23 @@ function openPopup(popupId) {
 
   overlay.addEventListener('click', () => closePopup(popupId));
   document.addEventListener('keydown', handleKeyDown);
-}
+};
 
-function closePopup(popupId) {
+const closePopup = (popupId) => {
   const popup = document.getElementById(popupId);
   const overlay = document.querySelector('.overlay');
-  if (popup) popup.classList.remove('active');
-  if (overlay) {
-    overlay.classList.remove('active');
-    setTimeout(() => overlay.remove(), 300);
-  }
+  popup?.classList.remove('active');
+  overlay?.classList.remove('active');
+  setTimeout(() => overlay?.remove(), 300);
   document.removeEventListener('keydown', handleKeyDown);
-}
+};
 
-function handleKeyDown(event) {
-  if (event.key === 'Escape' || event.key === 'Backspace') {
+const handleKeyDown = (event) => {
+  if (event.key === 'Escape') {
     const activePopup = document.querySelector('.popup.active');
-    if (activePopup) closePopup(activePopup.id);
+    activePopup && closePopup(activePopup.id);
   }
-}
+};
 
 /*=============== ACTIVE PROJECTS ===============*/
 const linkProjects = document.querySelectorAll('.projects-item');
@@ -141,26 +137,28 @@ linkProjects.forEach((a) =>
 const accordionItems = document.querySelectorAll('.resume-item');
 
 accordionItems.forEach((item) => {
-  const header = item.querySelector('.resume-header'),
-    content = item.querySelector('.resume-content'),
-    icon = item.querySelector('.resume-icon i');
+  const header = item.querySelector('.resume-header');
+  const content = item.querySelector('.resume-content');
+  const icon = item.querySelector('.resume-icon i');
 
-  header.addEventListener('click', () => {
-    const isOpen = item.classList.toggle('accordion-open');
-    content.style.height = isOpen ? content.scrollHeight + 'px' : '0';
-    icon.className = isOpen ? 'ri-subtract-line' : 'ri-add-line';
+  if (header && content && icon) {
+    header.addEventListener('click', () => {
+      const isOpen = item.classList.toggle('accordion-open');
+      content.style.height = isOpen ? `${content.scrollHeight}px` : '0';
+      icon.className = isOpen ? 'ri-subtract-line' : 'ri-add-line';
 
-    accordionItems.forEach((otherItem) => {
-      if (
-        otherItem !== item &&
-        otherItem.classList.contains('accordion-open')
-      ) {
-        otherItem.querySelector('.resume-content').style.height = '0';
-        otherItem.querySelector('.resume-icon i').className = 'ri-add-line';
-        otherItem.classList.remove('accordion-open');
-      }
+      accordionItems.forEach((otherItem) => {
+        if (
+          otherItem !== item &&
+          otherItem.classList.contains('accordion-open')
+        ) {
+          otherItem.querySelector('.resume-content').style.height = '0';
+          otherItem.querySelector('.resume-icon i').className = 'ri-add-line';
+          otherItem.classList.remove('accordion-open');
+        }
+      });
     });
-  });
+  }
 });
 
 document.addEventListener('click', (event) => {
@@ -174,8 +172,8 @@ document.addEventListener('click', (event) => {
 });
 
 /*=============== EMAIL JS ===============*/
-const contactForm = document.getElementById('contact-form'),
-  message = document.getElementById('message');
+const contactForm = document.getElementById('contact-form');
+const message = document.getElementById('message');
 
 const SUPABASE_URL = 'https://rgwphyerwjlignahtzys.supabase.co';
 const SUPABASE_KEY =
@@ -219,19 +217,37 @@ const sendFormData = async (e) => {
   setTimeout(() => (message.textContent = ''), 10000);
 };
 
-contactForm.addEventListener('submit', sendFormData);
+contactForm?.addEventListener('submit', sendFormData);
 
 /*=============== STYLE SWITCHER ===============*/
-const styleSwitcher = document.getElementById('style-switcher'),
-  switcherToggle = document.getElementById('switcher-toggle'),
-  switcherClose = document.getElementById('switcher-close');
+const styleSwitcher = document.getElementById('style-switcher');
+const switcherToggle = document.getElementById('switcher-toggle');
+const switcherClose = document.getElementById('switcher-close');
 
-switcherToggle.addEventListener('click', () =>
-  styleSwitcher.classList.add('show-switcher')
-);
-switcherClose.addEventListener('click', () =>
-  styleSwitcher.classList.remove('show-switcher')
-);
+const openSwitcher = () => styleSwitcher?.classList.add('show-switcher');
+const closeSwitcher = () => styleSwitcher?.classList.remove('show-switcher');
+
+switcherToggle?.addEventListener('click', openSwitcher);
+switcherClose?.addEventListener('click', closeSwitcher);
+
+document.addEventListener('click', (event) => {
+  if (
+    styleSwitcher?.classList.contains('show-switcher') &&
+    !styleSwitcher.contains(event.target) &&
+    !switcherToggle.contains(event.target)
+  ) {
+    closeSwitcher();
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (
+    event.key === 'Escape' &&
+    styleSwitcher?.classList.contains('show-switcher')
+  ) {
+    closeSwitcher();
+  }
+});
 
 /*=============== THEME COLORS ===============*/
 const colors = document.querySelectorAll('.style-switcher-color');

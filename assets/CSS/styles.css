@@ -166,9 +166,17 @@ button, input, textarea {
   transform: translateY(0);
 }
 
+/* Menambahkan transition-delay untuk setiap child hingga ke-10 */
+.reveal:nth-child(1) { transition-delay: 0.15s; }
 .reveal:nth-child(2) { transition-delay: 0.2s; }
-.reveal:nth-child(3) { transition-delay: 0.4s; }
-.reveal:nth-child(4) { transition-delay: 0.5s; }
+.reveal:nth-child(3) { transition-delay: 0.25s; }
+.reveal:nth-child(4) { transition-delay: 0.3s; }
+.reveal:nth-child(5) { transition-delay: 0.35s; }
+.reveal:nth-child(6) { transition-delay: 0.4s; }
+.reveal:nth-child(7) { transition-delay: 0.45s; }
+.reveal:nth-child(8) { transition-delay: 0.5s; }
+.reveal:nth-child(9) { transition-delay: 0.55s; }
+.reveal:nth-child(10) { transition-delay: 0.6s; }
 
 .social-links {
   display: inline-flex;
@@ -200,7 +208,7 @@ button, input, textarea {
   border: none;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2), -4px -4px 10px rgba(255, 255, 255, 0.1);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2), -4px -4px 10px rgba(255, 255, 255, 0.04);
   transition: all 0.3s ease;
   overflow: hidden;
   z-index: 1;
@@ -209,7 +217,6 @@ button, input, textarea {
 .btn:hover {
   background: var(--gradient-color);
   color: white;
-  box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3), -6px -6px 15px rgba(255, 255, 255, 0.2);
   transform: translateY(-3px);
 }
 
@@ -904,29 +911,39 @@ button, input, textarea {
   max-width: 600px;
   padding: 30px;
   border-radius: 15px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
   z-index: 1000;
   opacity: 0;
   transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
 }
 
+.popup.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popup::after,
 .popup::before {
+  --angle: 0deg;
   content: '';
   position: absolute;
   top: 25px;
   left: 25px;
   right: 25px;
   bottom: 25px;
-  box-shadow: 0 30px 90px 100px var(--shadow-color);
-  background: var(--gradient-color);
+  background: conic-gradient(
+    from var(--angle),
+    var(--gradient-start),
+    var(--gradient-text-end),
+    var(--gradient-start)
+  );
   border-radius: 15px;
   z-index: -1;
+  animation: spin 3s linear infinite;
 }
 
-.popup.active {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+.popup::before {
+  filter: blur(10px);
+  opacity: 0.5;
 }
 
 .popup-img {
@@ -957,7 +974,7 @@ button, input, textarea {
 
 .popup-content {
   background-color: white;
-  padding: 25px;
+  padding: 10px;
   border-radius: 10px;
   text-align: justify;
   position: relative;
@@ -965,32 +982,27 @@ button, input, textarea {
   box-shadow: 0 0 12px 10px var(--shadow-color);
 }
 
-.popup-content-resume {
+.bold-color {
   text-align: center;
-  background-color: white;
-  padding: 15px;
-  border-radius: 10px;
-  position: relative;
-  animation: slideIn 0.5s ease-in-out;
-  box-shadow: 0 0 12px 10px var(--shadow-color);
 }
 
-.popup-content-resume h2, .popup-content h2 {
-  margin-bottom: 10px;
-  margin-top: 10px;
+.popup-content h2 {
   font-size: 24px;
+  margin-top: 5px;
   color: var(--title-color);
 }
 
-.popup-content-resume p, .popup-content p {
+.popup-content p {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 10px;
   margin-top: 5px;
   font-size: 16px;
   color: #555;
-  line-height: 1.6;
 }
 
 .popup-content .details {
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: var(--normal-font-size);
   color: #777;
 }
@@ -1016,10 +1028,7 @@ button, input, textarea {
   margin-top: 10px;
 }
 
-.bold-color-span {
-  text-align: justify;
-  margin-inline: 0.8rem;
-}
+
 
 .attachment-container {
   text-align: center;
@@ -1693,12 +1702,10 @@ button, input, textarea {
 }
 
 @media screen and (max-width: 576px) {
-  .popup-content-resume h2,
   .popup-content h2 {
     font-size: 1.25rem;
   }
 
-  .popup-content-resume p,
   .popup-content p {
     font-size: 0.875rem;
   }
@@ -1773,12 +1780,10 @@ button, input, textarea {
     zoom: 0.8;
   }
 
-  .popup-content-resume h2,
   .popup-content h2 {
     font-size: 0.9rem;
   }
 
-  .popup-content-resume p,
   .popup-content p {
     font-size: 0.615rem;
   }
@@ -1866,12 +1871,10 @@ button, input, textarea {
 }
 
 @media screen and (max-width: 255px) {
-  .popup-content-resume h2,
   .popup-content h2 {
     font-size: 0.7rem;
   }
 
-  .popup-content-resume p,
   .popup-content p {
     font-size: 0.415rem;
   }
@@ -1974,5 +1977,20 @@ button, input, textarea {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+@keyframes spin {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
+
+@property --angle {
+syntax: '<angle>';
+inherits: false;
+initial-value: 0deg;
 }
 /* END ANIMATIONS */
