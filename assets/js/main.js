@@ -24,7 +24,7 @@ const reveal = document.querySelectorAll('.reveal');
 const revealOnScroll = () => {
   reveal.forEach((section) => {
     const { top, bottom } = section.getBoundingClientRect();
-    const isVisible = top < window.innerHeight * 0.9 && bottom > 0;
+    const isVisible = top < window.innerHeight * 1 && bottom > 0;
     section.classList.toggle('active', isVisible);
   });
 };
@@ -222,72 +222,27 @@ const sendFormData = async (e) => {
 
 contactForm?.addEventListener('submit', sendFormData);
 
-/*=============== STYLE SWITCHER ===============*/
-const styleSwitcher = document.getElementById('style-switcher');
-const switcherToggle = document.getElementById('switcher-toggle');
-const switcherClose = document.getElementById('switcher-close');
+/*=============== THEME SWITCHER ===============*/
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+const root = document.documentElement;
 
-const openSwitcher = () => styleSwitcher?.classList.add('show-switcher');
-const closeSwitcher = () => styleSwitcher?.classList.remove('show-switcher');
+function updateTheme(isDark) {
+  body.classList.toggle('dark', isDark);
+  root.style.setProperty(
+    '--gradient-text',
+    isDark
+      ? 'var(--gradient-color)'
+      : 'linear-gradient(235deg, var(--gradient-text-start), var(--gradient-text-end))'
+  );
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
 
-switcherToggle?.addEventListener('click', openSwitcher);
-switcherClose?.addEventListener('click', closeSwitcher);
+const isDarkTheme = localStorage.getItem('theme') === 'dark';
+themeToggle.checked = isDarkTheme;
+updateTheme(isDarkTheme);
 
-document.addEventListener('click', (event) => {
-  if (
-    styleSwitcher?.classList.contains('show-switcher') &&
-    !styleSwitcher.contains(event.target) &&
-    !switcherToggle.contains(event.target)
-  ) {
-    closeSwitcher();
-  }
-});
-
-document.addEventListener('keydown', (event) => {
-  if (
-    event.key === 'Escape' &&
-    styleSwitcher?.classList.contains('show-switcher')
-  ) {
-    closeSwitcher();
-  }
-});
-
-/*=============== THEME COLORS ===============*/
-const colors = document.querySelectorAll('.style-switcher-color');
-
-colors.forEach((color) => {
-  color.addEventListener('click', () => {
-    const activeColor = color.style.getPropertyValue('--hue');
-    colors.forEach((c) => c.classList.remove('active-color'));
-    color.classList.add('active-color');
-    document.documentElement.style.setProperty('--hue', activeColor);
-    document.documentElement.style.setProperty(
-      '--gradient-start',
-      `hsl(${activeColor}, 70%, 50%)`
-    );
-    document.documentElement.style.setProperty(
-      '--gradient-end',
-      `hsl(${parseInt(activeColor) + 45}, 70%, 50%)`
-    );
-  });
-});
-
-/*=============== LIGHT/DARK MODE ===============*/
-let currentTheme = 'light';
-document.body.className = currentTheme;
-
-document.querySelectorAll('input[name="body-theme"]').forEach((input) => {
-  input.addEventListener('change', () => {
-    currentTheme = input.value;
-    document.body.className = currentTheme;
-    document.documentElement.style.setProperty(
-      '--gradient-text',
-      currentTheme === 'dark'
-        ? 'var(--gradient-color)'
-        : 'linear-gradient(235deg, var(--gradient-text-start), var(--gradient-text-end))'
-    );
-  });
-});
+themeToggle.addEventListener('change', () => updateTheme(themeToggle.checked));
 
 /*=============== MIXITUP ===============*/
 var containerEl = document.querySelector('.projects-container');
@@ -302,5 +257,3 @@ if (containerEl) {
     },
   });
 }
-
-

@@ -75,14 +75,18 @@
             </div>
 
             <div class="nav-buttons">
-                <div class="nav-settings" id ="switcher-toggle">
-                    <i class="ri-settings-3-line"></i>
-                </div>
+                <label class="theme-button">
+                    <input class ="theme-button-checkbox" type="checkbox" id="theme-toggle">
+                    <i class="ri-sun-fill"></i>
+                    <i class="ri-moon-fill"></i>
+                    <span class="theme-toggle"></span>
+                    <span class="animated-bg"></span>
+                </label>
 
                 <div class="nav-toggle" id="nav-toggle">
                 </div>
+                
             </div>
-
         </nav>
     </header>
 
@@ -363,7 +367,7 @@
                             <div class="projects-popup" onclick="openPopup('popup-2')">
                                 <img src="assets/images/portofolio-1.png" alt="Project 2" class="projects-img" />
                                 <div class="projects-text">
-                                    <h3 class="projects-title">📂 Jury Assessment Form</h3>
+                                    <h3 class="projects-title"><i class="ri-folder-open-fill"></i>  Jury Assessment Form</h3>
                                     <p class="projects-description">Assessment form for National Competition</p>
                                     <div class="projects-tags">
                                         <span class="tag red">Elimination</span>
@@ -419,7 +423,7 @@
         </section>
 
 <!-- Pop-ups -->
-            <div id="popup-1" class="popup popup-projects">
+            <div id="popup-1" class="popup-projects">
                 <div class="popup-content">
                     <span class="close-btn" onclick="closePopup('popup-1')">&times;</span>
                     <h2><a href="">📂 Olist</a></h2>
@@ -436,11 +440,11 @@
                 </div>
             </div>
 
-            <div id="popup-2" class="popup popup-projects">
+            <div id="popup-2" class="popup-projects">
                 <div class="popup-content">
-                    <div class="popup-text">
+                    <div class="popup-text scrollable">
                         <span class="close-btn" onclick="closePopup('popup-2')">&times;</span>
-                        <h2>📂 Jury Assessment Form</h2>
+                        <h2><i class="ri-folder-open-fill"></i>&nbsp;&nbsp;Jury Assessment Form</h2>
                         <table>
                             <tr>
                                 <td style="color: #828282; text-align: left; text-align: left;"><i class="ri-quote-text"></i> Short Description</td>
@@ -472,13 +476,41 @@
                             </tr>
                         </table>
 
-                        <h3>About kontol.</h3>
-                        <p>bold fole</p>
+                        <h3>About</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis recusandae qui asperiores repellendus inventore, doloremque animi amet iusto id praesentium sunt accusamus tempora dolorum vero dolore, sint mollitia omnis nobis.</p>
+                        
+                        <p style="font-size: 25px; color: #828282; letter-spacing: 1px"><i>Important Files</i></p>
+                        <a href="https://drive.google.com/file/d/17TapqOKPANg4y8xDjpkCRkl_ylnI5axQ/view?usp=drive_link" target="_blank">View Report</a>
+
+                        <h3 class="line"></h3>
+                        <h3>About</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis recusandae qui asperiores repellendus inventore, doloremque animi amet iusto id praesentium sunt accusamus tempora dolorum vero dolore, sint mollitia omnis nobis.</p>
+                        <h3 class="line"></h3>
+
+                        <h3>Context</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis recusandae qui asperiores repellendus inventore, doloremque animi amet iusto id praesentium sunt accusamus tempora dolorum vero dolore, sint mollitia omnis nobis.</p>
+                        <h3 class="line"></h3>
+
+                        <h3>Problem</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis recusandae qui asperiores repellendus inventore, doloremque animi amet iusto id praesentium sunt accusamus tempora dolorum vero dolore, sint mollitia omnis nobis.</p>
+
+                        <h3>Objectives</h3>
+                            <li>Lorem</li>
+                            <li>LOREM</li>
+                        <h3 class="line"></h3>
+
+                        <h3>Processes & Considerations</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis recusandae qui asperiores repellendus inventore, doloremque animi amet iusto id praesentium sunt accusamus tempora dolorum vero dolore, sint mollitia omnis nobis.</p>
+                        <h3 class="line"></h3>
+
+                        <h3>Processes & Considerations</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis recusandae qui asperiores repellendus inventore, doloremque animi amet iusto id praesentium sunt accusamus tempora dolorum vero dolore, sint mollitia omnis nobis.</p>
+                        <h3 class="line"></h3>
                     </div>
                 </div>
             </div>
 
-            <div id="popup-3" class="popup popup-projects">
+            <div id="popup-3" class="popup-projects">
                 <div class="popup-content">
                     <span class="close-btn" onclick="closePopup('popup-3')">&times;</span>
                     <h2><a href="">📂 Superstore E-Commerce</a></h2>
@@ -493,7 +525,7 @@
                 </div>
             </div>
 
-            <div id="popup-4" class="popup popup-projects">
+            <div id="popup-4" class="popup-projects">
                 <div class="popup-content">
                     <span class="close-btn" onclick="closePopup('popup-4')">&times;</span>
                     <h2>Solving High Attrition Rate</h2>
@@ -1366,73 +1398,6 @@
         </div>
     </footer>
     <!--=============== FOOTER END ===============-->
-
-    <!--=============== STYLE SWITCHER START ===============-->
-    <div class="style-switcher" id="style-switcher">
-        <h2 class="style-switcher-title">Style Switcher</h2>
-
-        <div class="style-switcher-item">
-            <h3 class="style-switcher-subtitle">Colors</h3>
-
-            <div class="style-switcher-colors">
-                <span class="style-switcher-color active-color" style="--hue: 165">
-                    <i class="ri-check-line"></i>
-                </span>
-
-                <span class="style-switcher-color" style="--hue: 260">
-                    <i class="ri-check-line"></i>
-                </span>
-
-                <span class="style-switcher-color" style="--hue: 345">
-                    <i class="ri-check-line"></i>
-                </span>
-
-                <span class="style-switcher-color" style="--hue: 65">
-                    <i class="ri-check-line"></i>
-                </span>
-
-                <span class="style-switcher-color" style="--hue: 15">
-                    <i class="ri-check-line"></i>
-                </span>
-            </div>
-        </div>
-
-        <div class="style-switcher-item">
-            <h3 class="style-switcher-subtitle">Theme</h3>
-
-            <div class="style-switcher-themes">
-                <div class="style-switcher-theme">
-                    <input
-                        type="radio" 
-                        class="style-switcher-input" 
-                        name="body-theme" 
-                        value="light"
-                        checked="true"
-                        id="light-theme"
-                    />
-
-                    <label for="light-theme" class="style-switcher-label">Light</label>
-                </div>
-
-                <div class="style-switcher-theme">
-                    <input
-                        type="radio" 
-                        class="style-switcher-input" 
-                        name="body-theme" 
-                        value="dark"
-                        id="dark-theme"
-                    />
-
-                    <label for="dark-theme" class="style-switcher-label">Dark</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="style-switcher-close" id="switcher-close">
-            <i class="ri-close-line"></i>
-        </div>
-    </div>
-    <!--=============== STYLE SWITCHER END ===============-->
 
     <!--=============== SWIPER JS ===============-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
