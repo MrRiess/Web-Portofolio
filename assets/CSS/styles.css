@@ -21,7 +21,7 @@
     var(--gradient-start),
     var(--gradient-end)
   );
-  --gradient-text-start: hsl(var(--hue), 60%, 30%);
+  --gradient-text-start: hsl(var(--hue), 90%, 10%);
   --gradient-text-end: hsl(calc(var(--hue) + 45), 60%, 30%);
   --gradient-text: linear-gradient(
     235deg,
@@ -142,7 +142,6 @@ textarea {
   font-weight: var(--font-semi-bold);
 }
 
-
 .home-subtitle span,
 .home-job span,
 .footer-copyright span,
@@ -154,7 +153,6 @@ textarea {
   -webkit-text-fill-color: transparent !important;
   font-weight: var(--font-semi-bold);
 }
-
 
 .home-description span,
 .skills-description span,
@@ -901,7 +899,7 @@ textarea {
 }
 
 .projects-card {
-  background-color: #262626;
+  background-color: #202020;
   border-radius: 1.25rem;
   position: relative;
   overflow: hidden;
@@ -970,6 +968,7 @@ textarea {
   margin-top: 0.5rem;
   display: flex;
   gap: 0.5rem;
+  color: #E8E5EC;
 }
 
 .projects-popup {
@@ -988,9 +987,9 @@ textarea {
 }
 
 .tag {
-  padding: 5px 10px;
+  padding: 3px 8px;
   border-radius: 5px;
-  font-size: var(--smaller-font-size);
+  font-size: 14px;
 }
 
 .purple {
@@ -1003,7 +1002,7 @@ textarea {
   background: #906c35;
 }
 .green {
-  background: #005c41;
+  background: #2b5b4d;
 }
 .darkgreen {
   background: #1c3c2c;
@@ -1018,7 +1017,7 @@ textarea {
   background: #6f3551;
 }
 .red {
-  background: #8b0000;
+  background: #722121;
 }
 .brown {
   background: #7e403f;
@@ -1057,16 +1056,54 @@ textarea {
   bottom: 25px;
   background: conic-gradient(
     from var(--angle),
-    var(--gradient-start),
-    var(--gradient-text-end),
-    var(--gradient-start)
+    var(--gradient-text-start),
+    var(--gradient-end),
+    var(--gradient-text-start)
   );
   border-radius: 15px;
   z-index: -1;
   animation: spin 3s linear infinite;
 }
 
-.popup::before {
+.popup-projects {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  max-width: 1200px;
+  padding: 30px;
+  border-radius: 15px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.popup-projects.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popup-projects::after,
+.popup-projects::before {
+  --angle: 0deg;
+  content: '';
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  right: 25px;
+  bottom: 25px;
+  background: conic-gradient(
+    from var(--angle),
+    var(--gradient-text-start),
+    var(--gradient-end),
+    var(--gradient-text-start)
+  );
+  border-radius: 15px;
+  z-index: -1;
+  animation: spin 3s linear infinite;
+}
+
+.popup-projects::before {
   filter: blur(10px);
   opacity: 0.5;
 }
@@ -1098,7 +1135,7 @@ textarea {
 }
 
 .popup-content {
-  background-color: #262626;
+  background-color: #202020;
   padding: 10px;
   border-radius: 10px;
   text-align: justify;
@@ -1107,23 +1144,55 @@ textarea {
   box-shadow: 0 0 12px 10px var(--shadow-color);
 }
 
+.popup-text {
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
 .bold-color {
   text-align: center;
 }
 
-.popup-content h2 {
-  font-size: 24px;
-  margin-top: 5px;
-  color: #d5d5d5;
+.popup-content table {
+  font-size: 20px;
+  width: 100%;
+}
+
+.popup-content td {
+  padding: 5px 0px;
+  vertical-align: top;
 }
 
 .popup-content p {
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-bottom: 10px;
-  margin-top: 5px;
-  font-size: 16px;
+  margin-top: 10px;
+  font-size: 25px;
+  color: #BABABA;
+}
+
+.popup-content h2 {
+  display: flex;
+  text-align: left;
+  font-size: 54px;
   color: #d5d5d5;
+  padding-bottom: 30px;
+}
+
+.popup-content h3 {
+  margin-top: 30px;
+  font-size: 32px;
+  color: #BABABA;
+}
+
+.popup-projects-content {
+  background-color: #202020;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: justify;
+  position: relative;
+  animation: slideIn 0.5s ease-in-out;
+  box-shadow: 0 0 12px 10px var(--shadow-color);
 }
 
 .popup-content .details {
@@ -1138,10 +1207,18 @@ textarea {
 }
 
 .skills-tag {
-  color: #d5d5d5;
+  color: #E8E5EC;
   display: flex;
+  flex-wrap: wrap;
+  font-size: large;
+  padding-top: 5px;
   gap: 0.5rem;
-  margin-left: 0.75rem;
+}
+
+.tag-popup {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size:18px;
 }
 
 .popup b {
@@ -1168,9 +1245,9 @@ textarea {
 
 .close-btn {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  font-size: 2rem;
+  top: 0rem;
+  right: 1.25rem;
+  font-size: 2.5rem;
   cursor: pointer;
   color: var(--first-color);
 }
@@ -1763,6 +1840,9 @@ textarea {
 }
 
 @media screen and (max-width: 768px) {
+  .popup-content table{
+    text-align: left;
+  }
   .nav-menu,
   .style-switcher {
     width: 100%;
@@ -1838,14 +1918,6 @@ textarea {
 }
 
 @media screen and (max-width: 576px) {
-  .popup-content h2 {
-    font-size: 1.25rem;
-  }
-
-  .popup-content p {
-    font-size: 0.875rem;
-  }
-
   .swiper-pagination {
     zoom: 0.7;
   }
@@ -1914,14 +1986,6 @@ textarea {
 
   .projects-tags {
     zoom: 0.8;
-  }
-
-  .popup-content h2 {
-    font-size: 0.9rem;
-  }
-
-  .popup-content p {
-    font-size: 0.615rem;
   }
 
   .swiper-pagination {
@@ -2007,14 +2071,6 @@ textarea {
 }
 
 @media screen and (max-width: 255px) {
-  .popup-content h2 {
-    font-size: 0.7rem;
-  }
-
-  .popup-content p {
-    font-size: 0.415rem;
-  }
-
   .swiper-pagination {
     zoom: 0.7;
   }
