@@ -968,7 +968,7 @@ textarea {
   margin-top: 0.5rem;
   display: flex;
   gap: 0.5rem;
-  color: #E8E5EC;
+  color: #e8e5ec;
 }
 
 .projects-popup {
@@ -1152,7 +1152,14 @@ textarea {
 }
 
 .bold-color {
-  text-align: center;
+  font-size: 40px !important;
+  text-align: center !important;
+  padding-bottom: 10px !important;
+}
+
+.bold-color-span {
+  font-size: 20px !important;
+  margin-top: 5px !important;
 }
 
 .popup-content table {
@@ -1168,7 +1175,7 @@ textarea {
 .popup-content p {
   margin-top: 10px;
   font-size: 25px;
-  color: #BABABA;
+  color: #bababa;
 }
 
 .popup-content h2 {
@@ -1182,7 +1189,7 @@ textarea {
 .popup-content h3 {
   margin-top: 30px;
   font-size: 32px;
-  color: #BABABA;
+  color: #bababa;
 }
 
 .popup-projects-content {
@@ -1207,7 +1214,7 @@ textarea {
 }
 
 .skills-tag {
-  color: #E8E5EC;
+  color: #e8e5ec;
   display: flex;
   flex-wrap: wrap;
   font-size: large;
@@ -1218,7 +1225,7 @@ textarea {
 .tag-popup {
   padding: 5px 10px;
   border-radius: 5px;
-  font-size:18px;
+  font-size: 18px;
 }
 
 .popup b {
@@ -1837,12 +1844,17 @@ textarea {
   .projects-text {
     zoom: 0.8;
   }
+
+  .popup-text {
+    zoom: 0.7;
+  }
 }
 
 @media screen and (max-width: 768px) {
-  .popup-content table{
+  .popup-content table {
     text-align: left;
   }
+
   .nav-menu,
   .style-switcher {
     width: 100%;
@@ -1915,6 +1927,10 @@ textarea {
     justify-content: center;
     row-gap: 2.5rem;
   }
+
+  .popup-text {
+    zoom: 0.52;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -1976,6 +1992,14 @@ textarea {
 
   .resume-item {
     zoom: 0.85;
+  }
+
+  .details {
+    zoom: 0.8;
+  }
+
+  .popup-text {
+    zoom: 0.5;
   }
 }
 
@@ -2068,6 +2092,14 @@ textarea {
   .contact {
     zoom: 0.7;
   }
+
+  .details {
+    zoom: 0.5;
+  }
+
+  .popup-text {
+    zoom: 0.3;
+  }
 }
 
 @media screen and (max-width: 255px) {
@@ -2150,6 +2182,14 @@ textarea {
 
   .contact {
     zoom: 0.7;
+  }
+
+  .details {
+    zoom: 0.35;
+  }
+
+  .popup-text {
+    zoom: 0.2;
   }
 }
 /* END BREAKPOINTS */
