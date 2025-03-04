@@ -153,6 +153,18 @@ document
     }
   });
 
+const linkProjects = document.querySelectorAll('.projects-item');
+
+function activeProjects() {
+  linkProjects.forEach((a) => {
+    a.classList.remove('active-projects');
+  });
+
+  this.classList.add('active-projects');
+}
+
+linkProjects.forEach((a) => a.addEventListener('click', activeProjects));
+
 /*=============== LAZY LOADING IMAGE ===============*/
 document.addEventListener('DOMContentLoaded', function () {
   const lazyImages = document.querySelectorAll('img[data-src]');
