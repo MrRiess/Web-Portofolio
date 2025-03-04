@@ -87,10 +87,13 @@ const servicesSwiper = new Swiper('.services-swiper', {
 });
 
 /*=============== POP UP ===============*/
-let certificateSwiper = null;
+let activeSwiperInstances = {};
 
 const openPopup = (popupId) => {
   const popup = document.getElementById(popupId);
+  if (!popup) return;
+
+  // Tambahkan overlay
   const overlay = document.createElement('div');
   overlay.classList.add('overlay');
   document.body.appendChild(overlay);
@@ -98,14 +101,24 @@ const openPopup = (popupId) => {
   popup.classList.add('active');
   overlay.classList.add('active');
 
-  if (!certificateSwiper) {
-    certificateSwiper = new Swiper('.certificate-swiper', {
-      spaceBetween: 32,
-      loop: true,
-      pagination: { el: '.swiper-pagination', clickable: true },
-    });
+  // Lazy load image ketika pop-up terbuka
+  popup.querySelectorAll('img[data-src]').forEach((img) => {
+    img.src = img.dataset.src;
+    img.removeAttribute('data-src'); // Hapus atribut setelah dimuat
+  });
+
+  if (!activeSwiperInstances[popupId]) {
+    activeSwiperInstances[popupId] = new Swiper(
+      `#${popupId} .certificate-swiper`,
+      {
+        spaceBetween: 32,
+        loop: true,
+        pagination: { el: `#${popupId} .swiper-pagination`, clickable: true },
+      }
+    );
   }
 
+  // Event listener untuk close pop-up
   overlay.addEventListener('click', () => closePopup(popupId));
   document.addEventListener('keydown', handleKeyDown);
 };
@@ -113,28 +126,54 @@ const openPopup = (popupId) => {
 const closePopup = (popupId) => {
   const popup = document.getElementById(popupId);
   const overlay = document.querySelector('.overlay');
-  popup?.classList.remove('active');
-  overlay?.classList.remove('active');
-  setTimeout(() => overlay?.remove(), 300);
+  if (popup) popup.classList.remove('active');
+  if (overlay) {
+    overlay.classList.remove('active');
+    setTimeout(() => overlay.remove(), 300);
+  }
   document.removeEventListener('keydown', handleKeyDown);
 };
 
 const handleKeyDown = (event) => {
   if (event.key === 'Escape') {
     const activePopup = document.querySelector('.popup.active');
-    activePopup && closePopup(activePopup.id);
+    if (activePopup) closePopup(activePopup.id);
   }
 };
 
 /*=============== ACTIVE PROJECTS ===============*/
-const linkProjects = document.querySelectorAll('.projects-item');
+document
+  .querySelector('.projects-container')
+  ?.addEventListener('click', (e) => {
+    if (e.target.classList.contains('projects-item')) {
+      document
+        .querySelectorAll('.projects-item')
+        .forEach((item) => item.classList.remove('active-projects'));
+      e.target.classList.add('active-projects');
+    }
+  });
 
-linkProjects.forEach((a) =>
-  a.addEventListener('click', () => {
-    linkProjects.forEach((item) => item.classList.remove('active-projects'));
-    a.classList.add('active-projects');
-  })
-);
+/*=============== LAZY LOADING IMAGE ===============*/
+document.addEventListener('DOMContentLoaded', function () {
+  const lazyImages = document.querySelectorAll('img[data-src]');
+
+  if ('IntersectionObserver' in window) {
+    let lazyImageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          let img = entry.target;
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+          lazyImageObserver.unobserve(img);
+        }
+      });
+    });
+
+    lazyImages.forEach((img) => {
+      lazyImageObserver.observe(img);
+    });
+  }
+});
 
 /*=============== RESUME ===============*/
 const accordionItems = document.querySelectorAll('.resume-item');

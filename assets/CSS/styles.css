@@ -36,10 +36,10 @@
   --h1-font-size: 2.75rem;
   --h2-font-size: 1.75rem;
   --h3-font-size: 1.5rem;
-  --larger-font-size: 1.25rem;
+  --larger-font-size: 1.3rem;
   --large-font-size: 1.125rem;
   --normal-font-size: 1rem;
-  --small-font-size: 0.875rem;
+  --small-font-size: 0.9rem;
   --smaller-font-size: 0.8125rem;
 
   --font-medium: 500;
@@ -161,6 +161,27 @@ textarea {
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   font-weight: var(--font-semi-bold);
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+  margin-right: 10px;
+  margin-top: 2px;
+}
+
+.box {
+  display: flex;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  background: rgb(37, 37, 37);
+  padding: 16px 20px 16px 12px;
+  color: #e8e5ec;
+  font-size: 20px;
 }
 
 .scrollable {
@@ -836,7 +857,7 @@ textarea {
 .skills-description {
   margin-block: 1rem 2rem;
   text-align: justify;
-  font-size: var(--small-font-size);
+  font-size: var(--normal-font-size);
 }
 
 .skills-bar,
@@ -973,9 +994,13 @@ textarea {
 }
 
 .projects-title {
-  font-size: var(--larger-font-size);
+  font-size: 25px;
   color: #d5d5d5;
   margin-bottom: 0.25rem;
+}
+
+.projects-description {
+  font-size: 18px;
 }
 
 .tag {
@@ -1144,6 +1169,13 @@ textarea {
   margin-top: 15px;
 }
 
+.popup-text li {
+  font-size: 18px;
+  color: #bababa;
+  margin-left:5px;
+  margin-bottom: 7px;
+}
+
 .bold-color {
   font-size: 40px !important;
   text-align: center !important;
@@ -1166,22 +1198,22 @@ textarea {
 
 .popup-content p {
   margin-top: 10px;
-  font-size: 22px;
+  font-size: 18px;
   color: #bababa;
 }
 
 .popup-content h2 {
   display: flex;
   text-align: left;
-  font-size: 54px;
+  font-size: 42px;
   color: #d5d5d5;
   padding-bottom: 30px;
 }
 
 .popup-content h3 {
   margin-top: 25px;
-  font-size: 32px;
-  color: #bababa;
+  font-size: 24px;
+  color: #c3c1c6;
   text-align: left;
 }
 
@@ -1962,6 +1994,10 @@ input:checked ~ .theme-toggle {
     zoom: 0.8;
   }
 
+  .projects-list {
+    zoom: 0.8;
+  }
+
   .swiper-pagination {
     zoom: 0.7;
   }
@@ -2044,6 +2080,14 @@ input:checked ~ .theme-toggle {
   }
 
   .details {
+    zoom: 0.5;
+  }
+
+  .nav {
+    zoom: 0.5;
+  }
+
+  .footer {
     zoom: 0.5;
   }
 
