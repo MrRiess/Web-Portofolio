@@ -8,8 +8,12 @@
   --first-color: hsl(var(--hue), 60%, 40%);
   --title-color: hsl(var(--hue), 4%, 12%);
   --text-color: hsl(var(--hue), 4%, 20%);
+  --text-color-2: hsl(var(--hue), 0%, 25%);
+  --text-color-3: hsl(var(--hue), 0%, 40%);
+  --text-color-4: hsl(var(--hue), 0%, 40%);
   --body-color: hsl(var(--hue), 30%, 92%);
   --container-color: hsl(0, 0%, 100%);
+  --container-color-2: hsl(0, 0%, 100%);
   --border-color: hsl(var(--hue), 4%, 16%);
   --white-color: hsl(0, 0%, 100%);
   --shadow-color: hsla(var(--hue), 80%, 10%, 0.2);
@@ -55,7 +59,11 @@
 .dark {
   --title-color: hsl(0, 0%, 100%);
   --text-color: hsl(0, 0%, 92%);
+  --text-color-2: hsl(0, 0%, 83%);
+  --text-color-3: hsl(0, 0%, 73%);
+  --text-color-4: hsl(260, 11%, 86%);
   --body-color: hsl(var(--hue), 10%, 8%);
+  --container-color-2: hsl(var(--hue), 0%, 12%); 
   --container-color: hsl(var(--hue), 10%, 16%);
   --border-color: hsl(var(--hue), 4%, 65%);
   --shadow-color: hsl(var(--hue), 80%, 10%, 0.2);
@@ -912,11 +920,11 @@ textarea {
 }
 
 .projects-card {
-  background-color: #202020;
+  background-color: var(--container-color-2);
   border-radius: 1.25rem;
   position: relative;
   overflow: hidden;
-  color: #d5d5d5;
+  color: var(--text-color-2);
   border: 2px solid var(--gradient-text-start);
   box-shadow: 4px 4px var(--shadow-color);
   transition: all 0.5s var(--transition);
@@ -926,6 +934,10 @@ textarea {
   background: #3b3b3b;
   border: 2px solid var(--border-color);
   transform: scale(1.05);
+}
+
+.projects-card:hover * {
+  color: rgba(255, 255, 255, 0.796);
 }
 
 .projects-card::before {
@@ -995,7 +1007,7 @@ textarea {
 
 .projects-title {
   font-size: 25px;
-  color: #d5d5d5;
+  color: var(--text-color-2);
   margin-bottom: 0.25rem;
 }
 
@@ -1041,6 +1053,9 @@ textarea {
 }
 .orange {
   background: #83532a;
+}
+.grey {
+  background:  rgb(37, 37, 37);
 }
 
 .popup {
@@ -1153,7 +1168,7 @@ textarea {
 }
 
 .popup-content {
-  background-color: #202020;
+  background-color: var(--container-color-2);
   padding: 10px;
   border-radius: 10px;
   text-align: justify;
@@ -1171,7 +1186,7 @@ textarea {
 
 .popup-text li {
   font-size: 18px;
-  color: #bababa;
+  color: var(--text-color-3);
   margin-left:5px;
   margin-bottom: 7px;
 }
@@ -1199,21 +1214,21 @@ textarea {
 .popup-content p {
   margin-top: 10px;
   font-size: 18px;
-  color: #bababa;
+  color: var(--text-color-3);
 }
 
 .popup-content h2 {
   display: flex;
   text-align: left;
   font-size: 42px;
-  color: #d5d5d5;
+  color: var(--text-color);
   padding-bottom: 30px;
 }
 
 .popup-content h3 {
   margin-top: 25px;
   font-size: 24px;
-  color: #c3c1c6;
+  color: var(--text-color-2);
   text-align: left;
 }
 
