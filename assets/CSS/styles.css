@@ -63,7 +63,7 @@
   --text-color-3: hsl(0, 0%, 73%);
   --text-color-4: hsl(260, 11%, 86%);
   --body-color: hsl(var(--hue), 10%, 8%);
-  --container-color-2: hsl(var(--hue), 0%, 12%); 
+  --container-color-2: hsl(var(--hue), 0%, 12%);
   --container-color: hsl(var(--hue), 10%, 16%);
   --border-color: hsl(var(--hue), 4%, 65%);
   --shadow-color: hsl(var(--hue), 80%, 10%, 0.2);
@@ -1055,7 +1055,7 @@ textarea {
   background: #83532a;
 }
 .grey {
-  background:  rgb(37, 37, 37);
+  background: #292927;
 }
 
 .popup {
@@ -1182,13 +1182,14 @@ textarea {
   padding-right: 25px;
   margin-bottom: 20px;
   margin-top: 15px;
+  z-index: -1;
 }
 
 .popup-text li {
   font-size: 18px;
   color: var(--text-color-3);
-  margin-left:5px;
-  margin-bottom: 7px;
+  margin-left: 5px;
+  margin-bottom: 3px;
 }
 
 .bold-color {
@@ -1227,7 +1228,7 @@ textarea {
 
 .popup-content h3 {
   margin-top: 25px;
-  font-size: 24px;
+  font-size: 32px;
   color: var(--text-color-2);
   text-align: left;
 }
@@ -2241,3 +2242,19 @@ input:checked ~ .theme-toggle {
   initial-value: 0deg;
 }
 /* END ANIMATIONS */
+
+.image-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  justify-content: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+  border: 2px solid var(--border-color);
+  border-radius: 5px;
+  padding: 5px;
+}
